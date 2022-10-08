@@ -1,0 +1,33 @@
+{
+  "name": "blogger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Harsh3341/BloggingTech.git"
+  },
+  "author": "Harsh Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Harsh3341/BloggingTech/issues"
+  },
+  "homepage": "https://github.com/Harsh3341/BloggingTech#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
