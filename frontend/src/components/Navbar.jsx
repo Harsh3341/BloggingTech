@@ -16,7 +16,7 @@ const Navbar = () => {
             <div>
               <a
                 className="flex justify-center items-center hover:text-blue-500"
-                href="#"
+                href="/"
               >
                 <AiFillHome />
                 Home
@@ -25,7 +25,7 @@ const Navbar = () => {
             <div>
               <a
                 className="flex justify-center items-center hover:text-blue-500"
-                href="#"
+                href="/create"
               >
                 <IoIosCreate />
                 Create
