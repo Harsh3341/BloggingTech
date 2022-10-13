@@ -13,7 +13,6 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(blogData);
   };
 
   return (
