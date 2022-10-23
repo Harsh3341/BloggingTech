@@ -19,7 +19,6 @@ const Navbar = () => {
                 href="/"
               >
                 <AiFillHome />
-                Home
               </a>
             </div>
             <div>
