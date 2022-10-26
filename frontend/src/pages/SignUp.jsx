@@ -42,10 +42,9 @@ const SignUp = () => {
     } else {
       alert(data.message);
     }
+    console.log(data);
 
     setCredintials({ username: "", email: "", password: "" });
-
-    console.log(credintials);
   };
 
   return (
