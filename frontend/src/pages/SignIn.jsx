@@ -8,12 +8,15 @@ const SignIn = () => {
             <form className=" h-3/4 w-3/4 p-8">
               <div className="flex flex-col items-center mb-8">
                 <label>Email</label>
-                <input className="border-2 border-gray-500 h-10" type="email" />
+                <input
+                  className="border-2 border-gray-500 h-10 p-1"
+                  type="email"
+                />
               </div>
               <div className="flex flex-col items-center mb-8">
                 <label>Password</label>
                 <input
-                  className="border-2 border-gray-500  h-10"
+                  className="border-2 border-gray-500  h-10 p-1"
                   type="email"
                 />
               </div>
