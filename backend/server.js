@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/register", require("./routes/registerRoute"));
 app.use("/login", require("./routes/loginRoute"));
+app.use("/", require("./routes/homeRoute"));
 
 app.listen(PORT, () =>
   console.log(`Server is running on port ${PORT}`.green.underline.bold)
