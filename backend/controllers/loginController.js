@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const User = require("../models/userModel");
+const sendToken = require("../utils/jwtToken");
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -12,27 +13,26 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 
   // Find user by email
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).select("+password");
 
-  if (user) {
-    if (await bcrypt.compare(password, user.password)) {
-      res.json({
-        success: true,
-        message: "Login successful",
-        data: {
-          username: user.username,
-          email: user.email,
-          token,
-        },
-      });
-    } else {
-      res.status(400);
-      throw new Error("Invalid email or password");
-    }
+  if (user && (await bcrypt.compare(password, user.password))) {
+    sendToken(generateToken(user._id), 200, res, user);
   } else {
     res.status(400);
-    throw new Error("User not found");
+    throw new Error("Invalid email or password");
   }
+});
+
+// Logout user
+const logoutUser = asyncHandler(async (req, res) => {
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+  });
+  res.status(200).json({
+    success: true,
+    message: "Logged out",
+  });
 });
 
 // Generate JWT token
@@ -42,4 +42,4 @@ const generateToken = (id) => {
   });
 };
 
-module.exports = loginUser;
+module.exports = { loginUser, logoutUser };

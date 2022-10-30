@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const createPost = require("../controllers/createPostController");
 const protect = require("../middleware/authMiddleware");
-const { getBlogs } = require("../controllers/homeController");
 
-router.get("/", protect, getBlogs);
+router.post("/", protect, createPost);
 
 module.exports = router;
