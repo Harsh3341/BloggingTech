@@ -18,6 +18,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email }).select("+password");
 
   if (user && (await bcrypt.compare(password, user.password))) {
+    user.password = undefined;
     sendToken(generateToken(user._id), 200, res, user);
   } else {
     res.status(400);
