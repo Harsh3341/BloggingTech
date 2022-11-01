@@ -20,7 +20,7 @@ app.use("/login", require("./routes/loginRoute"));
 app.use("/logout", require("./routes/logoutRoute"));
 app.use("/password", require("./routes/resetPasswordRoute"));
 app.use("/info", require("./routes/userDataRoute"));
-app.use("/create", require("./routes/createRoute"));
+app.use("/blog", require("./routes/createRoute"));
 app.use("/", require("./routes/homeRoute"));
 
 app.listen(PORT, () =>

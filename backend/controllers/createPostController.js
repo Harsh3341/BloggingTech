@@ -37,4 +37,23 @@ const createPost = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = createPost;
+// Delete Post
+const deletePost = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { token } = req.cookies;
+  const decoded = Jwt.verify(token, process.env.JWT_SECRET);
+
+  const post = await User2.find({ _id: id, user: decoded.id });
+  if (post && post.length > 0) {
+    await User2.findByIdAndDelete(id);
+    res.status(200).json({
+      success: true,
+      message: "Post deleted successfully",
+    });
+  } else {
+    res.status(404);
+    throw new Error("Post not found");
+  }
+});
+
+module.exports = { createPost, deletePost };
