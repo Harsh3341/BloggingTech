@@ -18,6 +18,7 @@ app.use(cookieParser());
 app.use("/register", require("./routes/registerRoute"));
 app.use("/login", require("./routes/loginRoute"));
 app.use("/logout", require("./routes/logoutRoute"));
+app.use("/password", require("./routes/resetPasswordRoute"));
 app.use("/create", require("./routes/createRoute"));
 app.use("/", require("./routes/homeRoute"));
 
