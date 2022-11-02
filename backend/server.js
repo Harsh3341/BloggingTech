@@ -15,13 +15,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use("/register", require("./routes/registerRoute"));
-app.use("/login", require("./routes/loginRoute"));
-app.use("/logout", require("./routes/logoutRoute"));
-app.use("/password", require("./routes/resetPasswordRoute"));
-app.use("/info", require("./routes/userDataRoute"));
-app.use("/blog", require("./routes/createRoute"));
-app.use("/", require("./routes/homeRoute"));
+app.use("/api/v1/register", require("./routes/registerRoute"));
+app.use("/api/v1/login", require("./routes/loginRoute"));
+app.use("/api/v1/logout", require("./routes/logoutRoute"));
+app.use("/api/v1/password", require("./routes/resetPasswordRoute"));
+app.use("/api/v1/info", require("./routes/userDataRoute"));
+app.use("/api/v1/blog", require("./routes/createRoute"));
+app.use("/api/v1", require("./routes/homeRoute"));
 
 app.listen(PORT, () =>
   console.log(`Server is running on port ${PORT}`.green.underline.bold)

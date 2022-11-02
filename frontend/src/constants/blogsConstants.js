@@ -1,0 +1,4 @@
+export const ALL_BLOGS_REQUEST = "ALL_BLOGS_REQUEST";
+export const ALL_BLOGS_SUCCESS = "ALL_BLOGS_SUCCESS";
+export const ALL_BLOGS_FAIL = "ALL_BLOGS_FAIL";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
