@@ -4,9 +4,7 @@ const asyncHandler = require("express-async-handler");
 const Jwt = require("jsonwebtoken");
 
 const createPost = asyncHandler(async (req, res) => {
-  const { user, title, blog } = req.body;
-  const { token } = req.cookies;
-  const decoded = Jwt.verify(token, process.env.JWT_SECRET);
+  const { title, blog, imageUrl } = req.body;
 
   if (!title || !blog) {
     res.status(400);
@@ -15,9 +13,13 @@ const createPost = asyncHandler(async (req, res) => {
 
   // Create new post
   const data = await User2.create({
-    user: decoded.id,
+    user: req.user._id,
     title,
     blog,
+    image: {
+      public_id: "Random",
+      url: imageUrl,
+    },
   });
 
   if (data) {
