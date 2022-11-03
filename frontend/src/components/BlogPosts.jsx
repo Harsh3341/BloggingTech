@@ -15,7 +15,7 @@ const BlogPosts = (post) => {
           <div className="p-2 text-sm font-semibold">{post.content}</div>
         </div>
         <div>
-          <img src={post.Image}></img>
+          <img src={post.Image} alt=""></img>
         </div>
       </div>
     </>

@@ -1,9 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import qs from "qs";
+import { register } from "../actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
 
   const [credintials, setCredintials] = useState({
     username: "",
@@ -20,31 +25,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: qs.stringify({
-        username,
-        email,
-        password,
-      }),
-      url: "http://localhost:5000/register",
-    };
-
-    const response = await fetch(options.url, options);
-    const data = await response.json();
-
-    if (data.success) {
-      alert("User registered successfully");
-      navigate("/signin");
-    } else {
-      alert(data.message);
-    }
-    console.log(data);
-
-    setCredintials({ username: "", email: "", password: "" });
+    dispatch(register(username, email, password));
   };
 
   return (

@@ -33,7 +33,7 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(201).json({
       success: true,
       message: "User created successfully",
-      data: {
+      user: {
         _id: user._id,
         username: user.username,
         email: user.email,
