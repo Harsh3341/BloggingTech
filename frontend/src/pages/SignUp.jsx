@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { register } from "../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "../components/Loading";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -28,55 +29,65 @@ const SignUp = () => {
     dispatch(register(username, email, password));
   };
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
+
   return (
     <>
-      <div className="bg-gray-100 h-screen flex justify-center items-center p-8">
-        <div className="shadow-sm border-y-2 border-y-stone-900 bg-gray-100 h-5/6 w-2/3 transition  ease-in-out delay-150 hover:-translate-y-1 hover:shadow-2xl duration-300 flex flex-col items-center p-8">
-          <h1>Sign Up</h1>
-          <div className="flex justify-center items-center w-full h-full">
-            <form className=" h-3/4 w-3/4 p-8" onSubmit={handleSubmit}>
-              <div className="flex flex-col items-center">
-                <label>Username</label>
-                <input
-                  className="border-2 border-gray-500 h-10 p-1"
-                  type="username"
-                  name="username"
-                  onChange={handleChange}
-                  value={username}
-                />
-              </div>
-              <div className="flex flex-col items-center mb">
-                <label>Email</label>
-                <input
-                  className="border-2 border-gray-500 h-10 p-1"
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  value={email}
-                />
-              </div>
-              <div className="flex flex-col items-center mb-8">
-                <label>Password</label>
-                <input
-                  className="border-2 border-gray-500 h-10 p-1"
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  value={password}
-                />
-              </div>
-              <div className="flex flex-col items-center ">
-                <button
-                  className="bg-red-500 rounded-2xl w-28 h-10 hover:bg-red-700"
-                  type="submit"
-                >
-                  Register
-                </button>
-              </div>
-            </form>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="bg-gray-100 h-screen flex justify-center items-center p-8">
+          <div className="shadow-sm border-y-2 border-y-stone-900 bg-gray-100 h-5/6 w-2/3 transition  ease-in-out delay-150 hover:-translate-y-1 hover:shadow-2xl duration-300 flex flex-col items-center p-8">
+            <h1>Sign Up</h1>
+            <div className="flex justify-center items-center w-full h-full">
+              <form className=" h-3/4 w-3/4 p-8" onSubmit={handleSubmit}>
+                <div className="flex flex-col items-center">
+                  <label>Username</label>
+                  <input
+                    className="border-2 border-gray-500 h-10 p-1"
+                    type="username"
+                    name="username"
+                    onChange={handleChange}
+                    value={username}
+                  />
+                </div>
+                <div className="flex flex-col items-center mb">
+                  <label>Email</label>
+                  <input
+                    className="border-2 border-gray-500 h-10 p-1"
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    value={email}
+                  />
+                </div>
+                <div className="flex flex-col items-center mb-8">
+                  <label>Password</label>
+                  <input
+                    className="border-2 border-gray-500 h-10 p-1"
+                    type="password"
+                    name="password"
+                    onChange={handleChange}
+                    value={password}
+                  />
+                </div>
+                <div className="flex flex-col items-center ">
+                  <button
+                    className="bg-red-500 rounded-2xl w-28 h-10 hover:bg-red-700"
+                    type="submit"
+                  >
+                    Register
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
