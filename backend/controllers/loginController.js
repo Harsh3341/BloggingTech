@@ -15,7 +15,9 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 
   // Find user by email
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({ email: email.toLowerCase() }).select(
+    "+password"
+  );
 
   if (user && (await bcrypt.compare(password, user.password))) {
     user.password = undefined;

@@ -9,7 +9,7 @@ import {
 export const getBlogs = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_BLOGS_REQUEST });
-    const { data } = await axios.get("/api/v1/");
+    const { data } = await axios.get("/api/v1/me");
 
     dispatch({
       type: ALL_BLOGS_SUCCESS,

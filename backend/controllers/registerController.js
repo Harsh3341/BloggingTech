@@ -3,11 +3,16 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, confirmpassword } = req.body;
 
-  if (!username || !email || !password) {
+  if (!username || !email || !password || !confirmpassword) {
     res.status(400);
     throw new Error("Please fill in all fields");
+  }
+
+  if (password !== confirmpassword) {
+    res.status(400);
+    throw new Error("Passwords do not match");
   }
 
   // Check if user already exists
@@ -25,7 +30,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // Create new user
   const user = await User.create({
     username,
-    email,
+    email: email.toLowerCase(),
     password: hashedPassword,
   });
 

@@ -20,9 +20,9 @@ app.use("/api/v1/register", require("./routes/registerRoute"));
 app.use("/api/v1/login", require("./routes/loginRoute"));
 app.use("/api/v1/logout", require("./routes/logoutRoute"));
 app.use("/api/v1/password", require("./routes/resetPasswordRoute"));
-app.use("/api/v1/info", require("./routes/userDataRoute"));
-app.use("/api/v1/blog", require("./routes/createRoute"));
-app.use("/api/v1", require("./routes/homeRoute"));
+app.use("/api/v1/me/info", require("./routes/userDataRoute"));
+app.use("/api/v1/me/blog", require("./routes/createRoute"));
+app.use("/api/v1/me/", require("./routes/homeRoute"));
 
 app.use(errorHandler);
 
