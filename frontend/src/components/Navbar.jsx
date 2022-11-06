@@ -3,8 +3,19 @@ import { BsFillBellFill } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import { IoIosCreate } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { logout } from "../actions/userAction";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function logoutUser() {
+    dispatch(logout());
+    navigate("/login");
+  }
+
   return (
     <>
       <nav>
@@ -34,8 +45,18 @@ const Navbar = () => {
           <div>
             <BsFillBellFill />
           </div>
-          <div className="border-2 border-black rounded-full p-1">
+          <div className="group flex flex-col border-2 border-black rounded-full p-1">
             <FaUserAlt />
+            <ul className="absolute right-2 top-10 hidden text-gray-700 pt-1 group-hover:block">
+              <li onClick={logoutUser}>
+                <a
+                  className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                  href="/login"
+                >
+                  Logout
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
