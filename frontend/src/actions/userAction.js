@@ -73,7 +73,7 @@ export const lodeUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get("/api/v1/me");
+    const { data } = await axios.get("/api/v1/info");
 
     dispatch({
       type: LOAD_USER_SUCCESS,
