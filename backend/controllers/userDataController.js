@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Blogs = require("../models/userBlogs");
 const bcrypt = require("bcryptjs");
 
 const getUser = asyncHandler(async (req, res) => {
@@ -63,4 +64,15 @@ const updateProfile = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { getUser, changePassword, updateProfile };
+// Get Users Blog
+const getUserBlog = asyncHandler(async (req, res) => {
+  const user = await Blogs.find({ user: req.user.id });
+  if (user) {
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  }
+});
+
+module.exports = { getUser, changePassword, updateProfile, getUserBlog };
