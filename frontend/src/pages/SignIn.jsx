@@ -7,7 +7,9 @@ import { useEffect } from "react";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const { loading, isAuthenticated, error } = useSelector(
+    (state) => state.user
+  );
 
   const dispatch = useDispatch();
 
@@ -32,10 +34,14 @@ const SignIn = () => {
   };
 
   useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+
     if (isAuthenticated) {
       navigate("/");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, error]);
 
   return (
     <>

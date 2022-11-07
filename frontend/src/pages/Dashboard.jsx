@@ -7,11 +7,14 @@ import Loading from "../components/Loading";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const { loading, blogs } = useSelector((state) => state.blogs);
+  const { loading, blogs, error } = useSelector((state) => state.blogs);
 
   useEffect(() => {
+    if (error) {
+      alert(error);
+    }
     dispatch(getBlogs());
-  }, [dispatch]);
+  }, [dispatch, error]);
 
   return (
     <>
