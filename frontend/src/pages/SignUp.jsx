@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { register } from "../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../components/Loading";
+import { ImBlog } from "react-icons/im";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -15,9 +16,10 @@ const SignUp = () => {
     username: "",
     email: "",
     password: "",
+    confirmpassword: "",
   });
 
-  const { username, email, password } = credintials;
+  const { username, email, password, confirmpassword } = credintials;
 
   const handleChange = (e) => {
     setCredintials({ ...credintials, [e.target.name]: e.target.value });
@@ -26,7 +28,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(register(username, email, password));
+    dispatch(register(username, email, password, confirmpassword));
   };
 
   useEffect(() => {
@@ -40,50 +42,100 @@ const SignUp = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="bg-gray-100 h-screen flex justify-center items-center p-8">
-          <div className="shadow-sm border-y-2 border-y-stone-900 bg-gray-100 h-5/6 w-2/3 transition  ease-in-out delay-150 hover:-translate-y-1 hover:shadow-2xl duration-300 flex flex-col items-center p-8">
-            <h1>Sign Up</h1>
-            <div className="flex justify-center items-center w-full h-full">
-              <form className=" h-3/4 w-3/4 p-8" onSubmit={handleSubmit}>
-                <div className="flex flex-col items-center">
-                  <label>Username</label>
+        <div className="bg-white font-family-karla h-screen">
+          <div className="w-full flex flex-wrap">
+            <div className="w-full md:w-1/2 flex flex-col">
+              <div className="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
+                <a href="/" classNameName="  font-bold text-xl p-4">
+                  <ImBlog />
+                </a>
+              </div>
+
+              <div className="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <p className="text-center text-3xl">Join Us.</p>
+                <form
+                  className="flex flex-col pt-3 md:pt-8"
+                  onSubmit={handleSubmit}
+                >
+                  <div className="flex flex-col pt-4">
+                    <label for="name" className="text-lg">
+                      Username
+                    </label>
+                    <input
+                      type="username"
+                      name="username"
+                      placeholder="Username"
+                      onChange={handleChange}
+                      value={username}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+
+                  <div className="flex flex-col pt-4">
+                    <label for="email" className="text-lg">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="your@email.com"
+                      onChange={handleChange}
+                      value={email}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+
+                  <div className="flex flex-col pt-4">
+                    <label for="password" className="text-lg">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      onChange={handleChange}
+                      value={password}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+
+                  <div className="flex flex-col pt-4">
+                    <label for="confirmpassword" className="text-lg">
+                      Confirm Password
+                    </label>
+                    <input
+                      type="password"
+                      name="confirmpassword"
+                      placeholder="Confirm Password"
+                      onChange={handleChange}
+                      value={confirmpassword}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+
                   <input
-                    className="border-2 border-gray-500 h-10 p-1"
-                    type="username"
-                    name="username"
-                    onChange={handleChange}
-                    value={username}
-                  />
-                </div>
-                <div className="flex flex-col items-center mb">
-                  <label>Email</label>
-                  <input
-                    className="border-2 border-gray-500 h-10 p-1"
-                    type="email"
-                    name="email"
-                    onChange={handleChange}
-                    value={email}
-                  />
-                </div>
-                <div className="flex flex-col items-center mb-8">
-                  <label>Password</label>
-                  <input
-                    className="border-2 border-gray-500 h-10 p-1"
-                    type="password"
-                    name="password"
-                    onChange={handleChange}
-                    value={password}
-                  />
-                </div>
-                <div className="flex flex-col items-center ">
-                  <button
-                    className="bg-red-500 rounded-2xl w-28 h-10 hover:bg-red-700"
                     type="submit"
-                  >
-                    Register
-                  </button>
+                    value="Register"
+                    className="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8"
+                  />
+                </form>
+                <div className="text-center pt-12 pb-12">
+                  <p>
+                    Already have an account?{" "}
+                    <a href="/login" className="underline font-semibold">
+                      Log in here.
+                    </a>
+                  </p>
                 </div>
-              </form>
+              </div>
+            </div>
+
+            <div className="w-1/2 shadow-2xl">
+              <img
+                className="object-cover w-full h-screen hidden md:block"
+                src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                alt="Background"
+              />
             </div>
           </div>
         </div>

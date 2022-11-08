@@ -4,10 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userAction";
 import Loading from "../components/Loading";
 import { useEffect } from "react";
+import { ImBlog } from "react-icons/im";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const { loading, isAuthenticated, error } = useSelector(
+    (state) => state.user
+  );
 
   const dispatch = useDispatch();
 
@@ -32,50 +35,86 @@ const SignIn = () => {
   };
 
   useEffect(() => {
+    // if (error) {
+    //   alert(error);
+    // }
+
     if (isAuthenticated) {
       navigate("/");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, error]);
 
   return (
     <>
       {loading ? (
         <Loading />
       ) : (
-        <div className="bg-gray-100 h-screen flex justify-center items-center p-8">
-          <div className="shadow-sm border-y-2 border-y-stone-900 bg-gray-100 h-5/6 w-2/3 transition  ease-in-out delay-150 hover:-translate-y-1 hover:shadow-2xl duration-300 flex flex-col items-center p-8">
-            <h1>Sign In</h1>
-            <div className="flex justify-center items-center w-full h-full">
-              <form className=" h-3/4 w-3/4 p-8" onSubmit={handleSubmit}>
-                <div className="flex flex-col items-center mb-8">
-                  <label>Email</label>
+        <div className="bg-white font-family-karla h-screen">
+          <div className="w-full flex flex-wrap">
+            <div className="w-full md:w-1/2 flex flex-col">
+              <div className="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
+                <a href="/" className="  font-bold text-xl p-4">
+                  <ImBlog />
+                </a>
+              </div>
+
+              <div className="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <p className="text-center text-3xl">Welcome.</p>
+                <form
+                  className="flex flex-col pt-3 md:pt-8"
+                  onSubmit={handleSubmit}
+                >
+                  <div className="flex flex-col pt-4">
+                    <label for="email" className="text-lg">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="your@email.com"
+                      value={email}
+                      onChange={handleChange}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+
+                  <div className="flex flex-col pt-4">
+                    <label for="password" className="text-lg">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={handleChange}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+
                   <input
-                    className="border-2 border-gray-500 h-10 p-1"
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="flex flex-col items-center mb-8">
-                  <label>Password</label>
-                  <input
-                    className="border-2 border-gray-500  h-10 p-1"
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="flex flex-col items-center ">
-                  <button
-                    className="bg-red-500 rounded-2xl w-28 h-10"
                     type="submit"
-                  >
-                    Sign In
-                  </button>
+                    value="Log In"
+                    className="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8"
+                  />
+                </form>
+                <div className="text-center pt-12 pb-12">
+                  <p>
+                    Don't have an account?{" "}
+                    <a href="/signup" className="underline font-semibold">
+                      Register here.
+                    </a>
+                  </p>
                 </div>
-              </form>
+              </div>
+            </div>
+
+            <div className="w-1/2 shadow-2xl">
+              <img
+                className="object-cover w-full h-screen hidden md:block"
+                src="https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1973&q=80"
+                alt="login"
+              />
             </div>
           </div>
         </div>
