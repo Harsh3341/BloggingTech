@@ -1,6 +1,8 @@
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const sendToken = require("../utils/jwtToken");
 
 const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password, confirmpassword } = req.body;
@@ -35,19 +37,19 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    res.status(201).json({
-      success: true,
-      message: "User created successfully",
-      user: {
-        _id: user._id,
-        username: user.username,
-        email: user.email,
-      },
-    });
+    user.password = undefined;
+    sendToken(generateToken(user._id), 200, res, user);
   } else {
     res.status(400);
     throw new Error("User not created");
   }
 });
+
+// Generate JWT token
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+};
 
 module.exports = registerUser;
