@@ -35,9 +35,11 @@ const SignIn = () => {
   };
 
   useEffect(() => {
+
     // if (error) {
     //   alert(error);
     // }
+
 
     if (isAuthenticated) {
       navigate("/");
