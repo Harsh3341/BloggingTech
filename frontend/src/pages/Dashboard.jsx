@@ -10,9 +10,11 @@ const Dashboard = () => {
   const { loading, blogs, error } = useSelector((state) => state.blogs);
 
   useEffect(() => {
-    if (error) {
-      alert(error);
-    }
+
+    // if (error) {
+    //   alert(error);
+    // }
+
     dispatch(getBlogs());
   }, [dispatch, error]);
 

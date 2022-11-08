@@ -43,32 +43,33 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 // Register User
-export const register = (username, email, password) => async (dispatch) => {
-  try {
-    dispatch({ type: REGISTER_USER_REQUEST });
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+export const register =
+  (username, email, password, confirmpassword) => async (dispatch) => {
+    try {
+      dispatch({ type: REGISTER_USER_REQUEST });
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-    const { data } = await axios.post(
-      "/api/v1/register",
-      { username, email, password },
-      config
-    );
+      const { data } = await axios.post(
+        "/api/v1/register",
+        { username, email, password, confirmpassword },
+        config
+      );
 
-    dispatch({
-      type: REGISTER_USER_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: REGISTER_USER_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
+      dispatch({
+        type: REGISTER_USER_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: REGISTER_USER_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 // Load User
 export const lodeUser = () => async (dispatch) => {
