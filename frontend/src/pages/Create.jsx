@@ -43,7 +43,7 @@ const Create = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="h-screen">
+        <div className="h-screen w-full bg-gray-100">
           <Navbar />
           <div className="h-2/3 p-8 w-full flex justify-center">
             <div className="w-2/4 h-full flex items-center flex-col p-8 relative ">
