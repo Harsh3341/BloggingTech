@@ -35,11 +35,9 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-
     // if (error) {
     //   alert(error);
     // }
-
 
     if (isAuthenticated) {
       navigate("/");
@@ -51,7 +49,7 @@ const SignIn = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="bg-white font-family-karla h-screen">
+        <div className="bg-white font-family-karla w-full h-screen">
           <div className="w-full flex flex-wrap">
             <div className="w-full md:w-1/2 flex flex-col">
               <div className="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">

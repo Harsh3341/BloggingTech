@@ -10,7 +10,6 @@ const Dashboard = () => {
   const { loading, blogs, error } = useSelector((state) => state.blogs);
 
   useEffect(() => {
-
     // if (error) {
     //   alert(error);
     // }
@@ -23,19 +22,21 @@ const Dashboard = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="h-screen">
+        <div className="h-screen w-full bg-gray-100">
           <Navbar />
-          <div className="h-fit p-8 w-full ">
-            <div className="h-full flex justify-center flex-col p-8">
-              {blogs &&
-                blogs.map((post) => (
-                  <BlogPosts
-                    user={post.user}
-                    title={post.title}
-                    content={post.blog}
-                    Image={post.image[0].url}
-                  />
-                ))}
+          <div className="px-6 py-8">
+            <div className="flex justify-between container mx-auto">
+              <div className="w-full lg:w-8/12">
+                {blogs &&
+                  blogs.map((post) => (
+                    <BlogPosts
+                      user={post.user}
+                      title={post.title}
+                      content={post.blog}
+                      Image={post.image[0].url}
+                    />
+                  ))}
+              </div>
             </div>
           </div>
         </div>

@@ -42,7 +42,7 @@ const SignUp = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="bg-white font-family-karla h-screen">
+        <div className="bg-white font-family-karla h-screen w-full">
           <div className="w-full flex flex-wrap">
             <div className="w-full md:w-1/2 flex flex-col">
               <div className="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
