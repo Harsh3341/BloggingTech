@@ -5,6 +5,9 @@ import {
   CREATE_BLOGS_REQUEST,
   CREATE_BLOGS_SUCCESS,
   CREATE_BLOGS_FAIL,
+  USER_BLOGS_REQUEST,
+  USER_BLOGS_SUCCESS,
+  USER_BLOGS_FAIL,
   CLEAR_ERRORS,
 } from "../constants/blogsConstants";
 
@@ -12,11 +15,13 @@ export const blogsReducer = (state = { blogs: [] }, action) => {
   switch (action.type) {
     case ALL_BLOGS_REQUEST:
     case CREATE_BLOGS_REQUEST:
+    case USER_BLOGS_REQUEST:
       return {
         loading: true,
         blogs: [],
       };
     case ALL_BLOGS_SUCCESS:
+    case USER_BLOGS_SUCCESS:
       return {
         loading: false,
         blogs: action.payload.blogs,
@@ -31,6 +36,7 @@ export const blogsReducer = (state = { blogs: [] }, action) => {
       };
 
     case ALL_BLOGS_FAIL:
+    case USER_BLOGS_FAIL:
       return {
         loading: false,
         error: action.payload,

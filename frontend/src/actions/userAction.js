@@ -8,6 +8,9 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  ALL_USER_REQUEST,
+  ALL_USER_SUCCESS,
+  ALL_USER_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
   CLEAR_ERRORS,
@@ -70,6 +73,24 @@ export const register =
       });
     }
   };
+
+// Get All Users
+export const getAllUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_USER_REQUEST });
+    const { data } = await axios.get("/api/v1/users");
+
+    dispatch({
+      type: ALL_USER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
 
 // Load User
 export const lodeUser = () => async (dispatch) => {

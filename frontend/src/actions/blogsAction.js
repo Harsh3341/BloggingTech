@@ -6,6 +6,9 @@ import {
   CREATE_BLOGS_REQUEST,
   CREATE_BLOGS_SUCCESS,
   CREATE_BLOGS_FAIL,
+  USER_BLOGS_REQUEST,
+  USER_BLOGS_SUCCESS,
+  USER_BLOGS_FAIL,
   CLEAR_ERRORS,
 } from "../constants/blogsConstants";
 
@@ -21,6 +24,24 @@ export const getBlogs = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ALL_BLOGS_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// Get user blogs
+export const getUserBlogs = () => async (dispatch) => {
+  try {
+    dispatch({ type: USER_BLOGS_REQUEST });
+    const { data } = await axios.get("/api/v1/blog");
+
+    dispatch({
+      type: USER_BLOGS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_BLOGS_FAIL,
       payload: error.response.data.message,
     });
   }

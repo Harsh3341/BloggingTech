@@ -1,20 +1,45 @@
-const UserBlogs = () => {
-  const data = {
-    blogs: [
-      {
-        id: 1,
-        title: "Blog 1",
-        description: "Blog 1 description",
-      },
-      {
-        id: 2,
-        title: "Blog 2",
-        description: "Blog 2 description",
-      },
-    ],
-  };
+import BlogPosts from "../components/BlogPosts";
+import Navbar from "../components/Navbar";
+import Loading from "../components/Loading";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserBlogs } from "../actions/blogsAction";
 
-  return <div>hi</div>;
+const UserBlogs = () => {
+  const dispatch = useDispatch();
+  const { loading, blogs, error } = useSelector((state) => state.blogs);
+
+  useEffect(() => {
+    dispatch(getUserBlogs());
+  }, [dispatch]);
+
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="h-screen w-full bg-gray-100">
+          <Navbar />
+          <div className="px-6 py-8">
+            <div className="flex justify-between container mx-auto">
+              <div className="w-full lg:w-8/12">
+                {blogs &&
+                  blogs.map((post) => (
+                    <BlogPosts
+                      user={post.user}
+                      title={post.title}
+                      content={post.blog}
+                      Image={post.image[0].url}
+                      date={post.updatedAt}
+                    />
+                  ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default UserBlogs;

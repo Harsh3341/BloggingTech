@@ -4,10 +4,23 @@ import { getBlogs } from "../actions/blogsAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Loading from "../components/Loading";
+import UserComp from "../components/UserComp";
+import { getAllUsers } from "../actions/userAction";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { loading, blogs, error } = useSelector((state) => state.blogs);
+  const { users } = useSelector((state) => state.user);
+  console.log(users);
+
+  const data = [
+    {
+      username: "Alex John",
+    },
+    {
+      username: "Harsh Gupta",
+    },
+  ];
 
   useEffect(() => {
     // if (error) {
@@ -15,6 +28,7 @@ const Dashboard = () => {
     // }
 
     dispatch(getBlogs());
+    // dispatch(getAllUsers());
   }, [dispatch, error]);
 
   return (
@@ -34,8 +48,21 @@ const Dashboard = () => {
                       title={post.title}
                       content={post.blog}
                       Image={post.image[0].url}
+                      date={post.updatedAt}
                     />
                   ))}
+              </div>
+              <div class="-mx-8 w-4/12 hidden lg:block">
+                <div class="px-8">
+                  <h1 class="mb-4 text-xl font-bold text-gray-700">Authors</h1>
+                  <div class="flex flex-col bg-white max-w-sm px-6 py-4  rounded-lg shadow-md">
+                    <ul class="-mx-4">
+                      {data.map((user) => (
+                        <UserComp username={user.username} />
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

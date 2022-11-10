@@ -70,7 +70,7 @@ const getUserBlog = asyncHandler(async (req, res) => {
   if (user) {
     res.status(200).json({
       success: true,
-      user,
+      blogs: user,
     });
   }
 });

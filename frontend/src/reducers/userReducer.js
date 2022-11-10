@@ -8,6 +8,9 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  ALL_USER_REQUEST,
+  ALL_USER_SUCCESS,
+  ALL_USER_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
   CLEAR_ERRORS,
@@ -22,6 +25,13 @@ export const userReducer = (state = { user: {} }, action) => {
         loading: true,
         isAuthenticated: false,
       };
+
+    case ALL_USER_REQUEST:
+      return {
+        loading: true,
+        users: [],
+      };
+
     case LOGIN_SUCCESS:
     case REGISTER_USER_SUCCESS:
     case LOAD_USER_SUCCESS:
@@ -32,6 +42,13 @@ export const userReducer = (state = { user: {} }, action) => {
         message: action.payload.message,
         user: action.payload.user,
       };
+
+    case ALL_USER_SUCCESS:
+      return {
+        loading: false,
+        users: action.payload.users,
+      };
+
     case LOGOUT_SUCCESS:
       return {
         loading: false,
@@ -54,6 +71,13 @@ export const userReducer = (state = { user: {} }, action) => {
         loading: false,
         isAuthenticated: false,
         user: null,
+        error: action.payload,
+      };
+
+    case ALL_USER_FAIL:
+      return {
+        loading: false,
+        users: [],
         error: action.payload,
       };
 
