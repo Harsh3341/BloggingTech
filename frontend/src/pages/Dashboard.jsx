@@ -10,26 +10,12 @@ import { getAllUsers } from "../actions/userAction";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { loading, blogs, error } = useSelector((state) => state.blogs);
-  const { users } = useSelector((state) => state.user);
-  console.log(users);
-
-  const data = [
-    {
-      username: "Alex John",
-    },
-    {
-      username: "Harsh Gupta",
-    },
-  ];
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
-    // if (error) {
-    //   alert(error);
-    // }
-
     dispatch(getBlogs());
-    // dispatch(getAllUsers());
-  }, [dispatch, error]);
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
   return (
     <>
@@ -41,6 +27,11 @@ const Dashboard = () => {
           <div className="px-6 py-8">
             <div className="flex justify-between container mx-auto">
               <div className="w-full lg:w-8/12">
+                <div class="flex items-center justify-between">
+                  <h1 class="text-xl font-bold text-gray-700 md:text-2xl">
+                    Post
+                  </h1>
+                </div>
                 {blogs &&
                   blogs.map((post) => (
                     <BlogPosts
@@ -57,9 +48,8 @@ const Dashboard = () => {
                   <h1 class="mb-4 text-xl font-bold text-gray-700">Authors</h1>
                   <div class="flex flex-col bg-white max-w-sm px-6 py-4  rounded-lg shadow-md">
                     <ul class="-mx-4">
-                      {data.map((user) => (
-                        <UserComp username={user.username} />
-                      ))}
+                      {user &&
+                        user.map((user) => <UserComp username={user.name} />)}
                     </ul>
                   </div>
                 </div>

@@ -5,9 +5,10 @@ const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password, confirmpassword } = req.body;
+  const { name, username, email, password, confirmpassword } = req.body;
+  console.log(req.body);
 
-  if (!username || !email || !password || !confirmpassword) {
+  if (!name || !username || !email || !password || !confirmpassword) {
     res.status(400);
     throw new Error("Please fill in all fields");
   }
@@ -31,6 +32,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // Create new user
   const user = await User.create({
+    name,
     username,
     email: email.toLowerCase(),
     password: hashedPassword,

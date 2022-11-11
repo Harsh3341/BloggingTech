@@ -10,9 +10,7 @@ const UserComp = (post) => {
         <a className="text-gray-700 font-bold mx-1 hover:underline" href="#">
           {post.username}
         </a>
-        <span className="text-gray-700 text-sm font-light">
-          Created 23 Posts
-        </span>
+        <span className="text-gray-700 text-sm font-light"></span>
       </p>
     </li>
   );
