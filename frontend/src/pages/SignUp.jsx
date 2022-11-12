@@ -13,13 +13,14 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   const [credintials, setCredintials] = useState({
+    name: "",
     username: "",
     email: "",
     password: "",
     confirmpassword: "",
   });
 
-  const { username, email, password, confirmpassword } = credintials;
+  const { name, username, email, password, confirmpassword } = credintials;
 
   const handleChange = (e) => {
     setCredintials({ ...credintials, [e.target.name]: e.target.value });
@@ -28,7 +29,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(register(username, email, password, confirmpassword));
+    dispatch(register(name, username, email, password, confirmpassword));
   };
 
   useEffect(() => {
@@ -57,6 +58,19 @@ const SignUp = () => {
                   className="flex flex-col pt-3 md:pt-8"
                   onSubmit={handleSubmit}
                 >
+                  <div className="flex flex-col pt-4">
+                    <label for="name" className="text-lg">
+                      Name
+                    </label>
+                    <input
+                      type="name"
+                      name="name"
+                      placeholder="Name"
+                      onChange={handleChange}
+                      value={name}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
                   <div className="flex flex-col pt-4">
                     <label for="name" className="text-lg">
                       Username

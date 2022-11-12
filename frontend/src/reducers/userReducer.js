@@ -41,7 +41,7 @@ export const userReducer = (state = { user: {} }, action) => {
       return {
         ...state,
         loading: false,
-        user: action.payload.users,
+        users: action.payload.users,
       };
 
     case LOGOUT_SUCCESS:

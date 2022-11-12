@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { lodeUser } from "./actions/userAction";
 import { useSelector } from "react-redux";
 import UserBlogs from "./pages/UserBlogs";
+import Profile from "./pages/Profile";
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.user);
@@ -23,11 +24,11 @@ function App() {
           path="/"
           element={isAuthenticated ? <Dashboard /> : <SignIn />}
         />
-
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/create" element={<Create />} />
         <Route path="/blog" element={<UserBlogs />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );

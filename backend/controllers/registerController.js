@@ -6,7 +6,6 @@ const sendToken = require("../utils/jwtToken");
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, username, email, password, confirmpassword } = req.body;
-  console.log(req.body);
 
   if (!name || !username || !email || !password || !confirmpassword) {
     res.status(400);

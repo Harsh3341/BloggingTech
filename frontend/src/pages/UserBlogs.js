@@ -18,7 +18,7 @@ const UserBlogs = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="h-screen w-full bg-gray-100">
+        <div className="h-screen w-full bg-gray-100 overflow-auto">
           <Navbar />
           <div className="px-6 py-8">
             <div className="flex justify-between container mx-auto">

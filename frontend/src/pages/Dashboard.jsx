@@ -10,7 +10,7 @@ import { getAllUsers } from "../actions/userAction";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { loading, blogs, error } = useSelector((state) => state.blogs);
-  const { user } = useSelector((state) => state.user);
+  const { users } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(getBlogs());
@@ -22,7 +22,7 @@ const Dashboard = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="h-screen w-full bg-gray-100">
+        <div className="h-screen w-full bg-gray-100 overflow-auto">
           <Navbar />
           <div className="px-6 py-8">
             <div className="flex justify-between container mx-auto">
@@ -48,8 +48,8 @@ const Dashboard = () => {
                   <h1 class="mb-4 text-xl font-bold text-gray-700">Authors</h1>
                   <div class="flex flex-col bg-white max-w-sm px-6 py-4  rounded-lg shadow-md">
                     <ul class="-mx-4">
-                      {user &&
-                        user.map((user) => <UserComp username={user.name} />)}
+                      {users &&
+                        users.map((user) => <UserComp username={user.name} />)}
                     </ul>
                   </div>
                 </div>

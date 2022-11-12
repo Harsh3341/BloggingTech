@@ -35,7 +35,7 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: data.user,
+      payload: data,
     });
   } catch (error) {
     dispatch({
@@ -47,7 +47,7 @@ export const login = (email, password) => async (dispatch) => {
 
 // Register User
 export const register =
-  (username, email, password, confirmpassword) => async (dispatch) => {
+  (name, username, email, password, confirmpassword) => async (dispatch) => {
     try {
       dispatch({ type: REGISTER_USER_REQUEST });
       const config = {
@@ -58,7 +58,7 @@ export const register =
 
       const { data } = await axios.post(
         "/api/v1/register",
-        { username, email, password, confirmpassword },
+        { name, username, email, password, confirmpassword },
         config
       );
 
@@ -101,7 +101,7 @@ export const lodeUser = () => async (dispatch) => {
 
     dispatch({
       type: LOAD_USER_SUCCESS,
-      payload: data.user,
+      payload: data,
     });
   } catch (error) {
     dispatch({
