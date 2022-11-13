@@ -6,6 +6,9 @@ import {
   CREATE_BLOGS_REQUEST,
   CREATE_BLOGS_SUCCESS,
   CREATE_BLOGS_FAIL,
+  DELETE_BLOGS_REQUEST,
+  DELETE_BLOGS_SUCCESS,
+  DELETE_BLOGS_FAIL,
   USER_BLOGS_REQUEST,
   USER_BLOGS_SUCCESS,
   USER_BLOGS_FAIL,
@@ -66,6 +69,24 @@ export const createBlog = (blogData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: CREATE_BLOGS_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// delete blog
+export const deleteBlog = (id) => async (dispatch) => {
+  dispatch({ type: DELETE_BLOGS_REQUEST });
+  try {
+    const { data } = await axios.delete(`/api/v1/blog/delete/${id}`);
+
+    dispatch({
+      type: DELETE_BLOGS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_BLOGS_FAIL,
       payload: error.response.data.message,
     });
   }

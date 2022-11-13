@@ -7,11 +7,12 @@ import { getUserBlogs } from "../actions/blogsAction";
 
 const UserBlogs = () => {
   const dispatch = useDispatch();
-  const { loading, blogs, error } = useSelector((state) => state.blogs);
+  const { loading, blogs } = useSelector((state) => state.blogs);
+  const { success } = useSelector((state) => state.blogs);
 
   useEffect(() => {
     dispatch(getUserBlogs());
-  }, [dispatch]);
+  }, [dispatch, success]);
 
   return (
     <>
@@ -26,6 +27,9 @@ const UserBlogs = () => {
                 {blogs &&
                   blogs.map((post) => (
                     <BlogPosts
+                      key={post._id}
+                      id={post._id}
+                      type="UserBlogs"
                       user={post.user}
                       title={post.title}
                       content={post.blog}

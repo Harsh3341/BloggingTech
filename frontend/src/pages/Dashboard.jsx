@@ -9,7 +9,7 @@ import { getAllUsers } from "../actions/userAction";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const { loading, blogs, error } = useSelector((state) => state.blogs);
+  const { loading, blogs } = useSelector((state) => state.blogs);
   const { users } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -27,14 +27,16 @@ const Dashboard = () => {
           <div className="px-6 py-8">
             <div className="flex justify-between container mx-auto">
               <div className="w-full lg:w-8/12">
-                <div class="flex items-center justify-between">
-                  <h1 class="text-xl font-bold text-gray-700 md:text-2xl">
+                <div className="flex items-center justify-between">
+                  <h1 className="text-xl font-bold text-gray-700 md:text-2xl">
                     Post
                   </h1>
                 </div>
                 {blogs &&
                   blogs.map((post) => (
                     <BlogPosts
+                      key={post.user}
+                      type="dashboard"
                       user={post.user}
                       title={post.title}
                       content={post.blog}
@@ -43,13 +45,17 @@ const Dashboard = () => {
                     />
                   ))}
               </div>
-              <div class="-mx-8 w-4/12 hidden lg:block">
-                <div class="px-8">
-                  <h1 class="mb-4 text-xl font-bold text-gray-700">Authors</h1>
-                  <div class="flex flex-col bg-white max-w-sm px-6 py-4  rounded-lg shadow-md">
-                    <ul class="-mx-4">
+              <div className="-mx-8 w-4/12 hidden lg:block">
+                <div className="px-8">
+                  <h1 className="mb-4 text-xl font-bold text-gray-700">
+                    Authors
+                  </h1>
+                  <div className="flex flex-col bg-white max-w-sm px-6 py-4  rounded-lg shadow-md">
+                    <ul className="-mx-4">
                       {users &&
-                        users.map((user) => <UserComp username={user.name} />)}
+                        users.map((user) => (
+                          <UserComp key={user._id} username={user.username} />
+                        ))}
                     </ul>
                   </div>
                 </div>

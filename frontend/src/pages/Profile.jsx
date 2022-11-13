@@ -1,9 +1,18 @@
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const { user, loading } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const { isAuthenticated, user, loading } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <>

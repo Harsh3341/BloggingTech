@@ -89,9 +89,9 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setToggle(!toggle)}
-              class="block text-gray-800 hover:text-gray-600 focus:text-gray-600 focus:outline-none md:hidden"
+              className="block text-gray-800 hover:text-gray-600 focus:text-gray-600 focus:outline-none md:hidden"
             >
-              <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+              <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
                 <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z" />
               </svg>
             </button>
