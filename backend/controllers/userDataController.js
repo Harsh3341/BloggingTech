@@ -67,10 +67,27 @@ const updateProfile = asyncHandler(async (req, res) => {
 // Get Users Blog
 const getUserBlog = asyncHandler(async (req, res) => {
   const user = await Blogs.find({ user: req.user.id });
+
+  const temp = user.map(async (blog) => {
+    const user = await User.findById(blog.user);
+    {
+      try {
+        return {
+          ...blog._doc,
+          name: user.name,
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  });
+
+  const blogs = await Promise.all(temp);
+
   if (user) {
     res.status(200).json({
       success: true,
-      blogs: user,
+      blogs,
     });
   }
 });

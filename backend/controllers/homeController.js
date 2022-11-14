@@ -7,9 +7,25 @@ const User = require("../models/userModel");
 const getBlogs = asyncHandler(async (req, res) => {
   const blogs = await Blog.find();
 
+  const temp = blogs.map(async (blog) => {
+    const user = await User.findById(blog.user);
+    {
+      try {
+        return {
+          ...blog._doc,
+          name: user.name,
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  });
+
+  const blogs2 = await Promise.all(temp);
+
   res.status(200).json({
     success: true,
-    blogs,
+    blogs: blogs2,
   });
 });
 

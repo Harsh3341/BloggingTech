@@ -1,18 +1,10 @@
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
-  const navigate = useNavigate();
-  const { isAuthenticated, user, loading } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login");
-    }
-  }, [isAuthenticated, navigate]);
+  const { user, loading } = useSelector((state) => state.user);
 
   return (
     <>
@@ -56,11 +48,14 @@ const Profile = () => {
                       alt="#"
                     />
                   </div>
-                  <div className="w-2/4 p-1 flex justify-center text-white bg-black rounded-md">
+                  <Link
+                    className="w-2/4 p-1 flex justify-center text-white bg-black rounded-md"
+                    to="/password/update"
+                  >
                     <button className="w-full hover:bg-gray-500">
                       Edit Profile
                     </button>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>

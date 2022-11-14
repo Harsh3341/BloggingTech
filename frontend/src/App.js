@@ -6,9 +6,10 @@ import Create from "./pages/Create";
 import store from "./store";
 import { useEffect } from "react";
 import { lodeUser } from "./actions/userAction";
-import { useSelector } from "react-redux";
 import UserBlogs from "./pages/UserBlogs";
 import Profile from "./pages/Profile";
+import { useSelector } from "react-redux";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.user);
@@ -20,15 +21,28 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route
           path="/"
           element={isAuthenticated ? <Dashboard /> : <SignIn />}
         />
-        <Route path="/login" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/create" element={<Create />} />
-        <Route path="/blog" element={<UserBlogs />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/create"
+          element={isAuthenticated ? <Create /> : <SignIn />}
+        />
+        <Route
+          path="/blog"
+          element={isAuthenticated ? <UserBlogs /> : <SignIn />}
+        />
+        <Route
+          path="/profile"
+          element={isAuthenticated ? <Profile /> : <SignIn />}
+        />
+        <Route
+          path="/password/update"
+          element={isAuthenticated ? <ResetPassword /> : <SignIn />}
+        />
       </Routes>
     </>
   );

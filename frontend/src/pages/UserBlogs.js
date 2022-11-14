@@ -30,7 +30,7 @@ const UserBlogs = () => {
                       key={post._id}
                       id={post._id}
                       type="UserBlogs"
-                      user={post.user}
+                      user={post.name}
                       title={post.title}
                       content={post.blog}
                       Image={post.image[0].url}

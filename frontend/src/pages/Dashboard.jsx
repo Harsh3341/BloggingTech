@@ -37,7 +37,7 @@ const Dashboard = () => {
                     <BlogPosts
                       key={post.user}
                       type="dashboard"
-                      user={post.user}
+                      user={post.name}
                       title={post.title}
                       content={post.blog}
                       Image={post.image[0].url}

@@ -8,9 +8,7 @@ import { ImBlog } from "react-icons/im";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { loading, isAuthenticated, error } = useSelector(
-    (state) => state.user
-  );
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 
@@ -35,14 +33,10 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    // if (error) {
-    //   alert(error);
-    // }
-
     if (isAuthenticated) {
       navigate("/");
     }
-  }, [isAuthenticated, navigate, error]);
+  }, [isAuthenticated, navigate]);
 
   return (
     <>

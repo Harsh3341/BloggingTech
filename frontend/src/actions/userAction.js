@@ -8,6 +8,9 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  UPDATE_PASSWORD_REQUEST,
+  UPDATE_PASSWORD_SUCCESS,
+  UPDATE_PASSWORD_FAIL,
   ALL_USER_REQUEST,
   ALL_USER_SUCCESS,
   ALL_USER_FAIL,
@@ -124,6 +127,36 @@ export const logout = () => async (dispatch) => {
     });
   }
 };
+
+// Update Password
+
+export const updatePassword =
+  (oldPassword, newPassword, confirmPassword) => async (dispatch) => {
+    try {
+      dispatch({ type: UPDATE_PASSWORD_REQUEST });
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const { data } = await axios.put(
+        "api/v1/info/changePassword",
+        { oldPassword, newPassword, confirmPassword },
+        config
+      );
+
+      dispatch({
+        type: UPDATE_PASSWORD_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: UPDATE_PASSWORD_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 // Clear Errors
 export const clearErrors = () => async (dispatch) => {

@@ -8,7 +8,11 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
-  ALL_USER_REQUEST,
+  UPDATE_PASSWORD_REQUEST,
+  UPDATE_PASSWORD_SUCCESS,
+  UPDATE_PASSWORD_RESET,
+  UPDATE_PASSWORD_FAIL,
+  // ALL_USER_REQUEST,
   ALL_USER_SUCCESS,
   ALL_USER_FAIL,
   LOGOUT_SUCCESS,
@@ -83,6 +87,41 @@ export const userReducer = (state = { user: {} }, action) => {
         error: action.payload,
         loading: false,
       };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const profileReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PASSWORD_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case UPDATE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isUpdated: action.payload,
+      };
+    case UPDATE_PASSWORD_RESET:
+      return {
+        ...state,
+        isUpdated: false,
+      };
+    case UPDATE_PASSWORD_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+
     case CLEAR_ERRORS:
       return {
         ...state,
