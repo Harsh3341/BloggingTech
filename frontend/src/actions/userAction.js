@@ -141,7 +141,7 @@ export const updatePassword =
       };
 
       const { data } = await axios.put(
-        "api/v1/info/changePassword",
+        "/api/v1/info/changePassword",
         { oldPassword, newPassword, confirmPassword },
         config
       );

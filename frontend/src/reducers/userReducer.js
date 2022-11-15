@@ -101,14 +101,15 @@ export const profileReducer = (state = {}, action) => {
   switch (action.type) {
     case UPDATE_PASSWORD_REQUEST:
       return {
-        ...state,
         loading: true,
+        isUpdated: false,
       };
     case UPDATE_PASSWORD_SUCCESS:
       return {
         ...state,
         loading: false,
-        isUpdated: action.payload,
+        isUpdated: true,
+        message: action.payload.message,
       };
     case UPDATE_PASSWORD_RESET:
       return {
@@ -118,8 +119,9 @@ export const profileReducer = (state = {}, action) => {
     case UPDATE_PASSWORD_FAIL:
       return {
         ...state,
-        error: action.payload,
         loading: false,
+        isUpdated: false,
+        error: action.payload,
       };
 
     case CLEAR_ERRORS:

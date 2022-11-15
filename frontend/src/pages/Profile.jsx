@@ -34,11 +34,14 @@ const Profile = () => {
                     <h1 className="font-bold text-xl">Email</h1>
                     <p> {user.email}</p>
                   </div>
-                  <div className="w-2/5 p-1 flex justify-center text-white bg-black mt-7 rounded-md">
+                  <Link
+                    className="w-2/5 p-1 flex justify-center text-white bg-black mt-7 rounded-md"
+                    to="/profile/password/update"
+                  >
                     <button className="w-full hover:bg-gray-500">
                       Change Password
                     </button>
-                  </div>
+                  </Link>
                 </div>
                 <div className="flex flex-col w-full  items-center h-full">
                   <div className="w-3/4 h-3/4 flex items-center justify-center">
@@ -50,7 +53,7 @@ const Profile = () => {
                   </div>
                   <Link
                     className="w-2/4 p-1 flex justify-center text-white bg-black rounded-md"
-                    to="/password/update"
+                    to="/profile/update"
                   >
                     <button className="w-full hover:bg-gray-500">
                       Edit Profile

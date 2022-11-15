@@ -47,7 +47,7 @@ const SignIn = () => {
           <div className="w-full flex flex-wrap">
             <div className="w-full md:w-1/2 flex flex-col">
               <div className="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
-                <a href="/" className="  font-bold text-xl p-4">
+                <a href="/" className="font-bold text-xl p-4">
                   <ImBlog />
                 </a>
               </div>
