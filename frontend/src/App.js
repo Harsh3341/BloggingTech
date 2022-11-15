@@ -40,7 +40,7 @@ function App() {
           element={isAuthenticated ? <Profile /> : <SignIn />}
         />
         <Route
-          path="/password/update"
+          path="/profile/password/update"
           element={isAuthenticated ? <ResetPassword /> : <SignIn />}
         />
       </Routes>
