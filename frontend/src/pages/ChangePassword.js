@@ -1,27 +1,24 @@
+import Navbar from "../components/Navbar";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { resetpassword, clearErrors } from "../actions/userAction";
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { updatePassword, clearErrors } from "../actions/userAction";
 import Loading from "../components/Loading";
-import { RESET_PASSWORD_RESET } from "../constants/userConstants";
+import { useNavigate } from "react-router-dom";
+import { UPDATE_PASSWORD_RESET } from "../constants/userConstants";
 
-const ResetPassword = () => {
+const ChangePassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const { loading, error, status, user } = useSelector(
-    (state) => state.profile
-  );
-
-  const { token } = useParams();
+  const { loading, isUpdated, error } = useSelector((state) => state.profile);
 
   const [credentials, setCredentials] = useState({
-    password: "",
+    oldPassword: "",
+    newPassword: "",
     confirmPassword: "",
   });
 
-  const { password, confirmPassword } = credentials;
+  const { oldPassword, newPassword, confirmPassword } = credentials;
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -29,21 +26,27 @@ const ResetPassword = () => {
 
   const resetPasswordSubmit = (e) => {
     e.preventDefault();
-    dispatch(resetpassword(token, password, confirmPassword));
+
+    dispatch(updatePassword(oldPassword, newPassword, confirmPassword));
   };
 
   useEffect(() => {
     if (error) {
       alert(error);
       dispatch(clearErrors());
+
+      setCredentials({
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
     }
 
-    if (status) {
-      navigate("/login");
-      alert("Password reset successfully");
-      dispatch({ type: RESET_PASSWORD_RESET });
+    if (isUpdated) {
+      navigate("/profile");
+      dispatch({ type: UPDATE_PASSWORD_RESET });
     }
-  }, [dispatch, error, status]);
+  }, [dispatch, error, isUpdated, navigate]);
 
   return (
     <>
@@ -51,6 +54,7 @@ const ResetPassword = () => {
         <Loading />
       ) : (
         <div className="w-full h-full bg-gray-100 flex flex-col">
+          <Navbar />
           <div className="w-full h-full p-10 overflow-auto">
             <div className="flex items-center justify-center h-full">
               <div className="md:w-2/6 w-3/4 h-3/4 bg-white rounded-xl">
@@ -59,13 +63,23 @@ const ResetPassword = () => {
                   onSubmit={resetPasswordSubmit}
                 >
                   <div className="flex flex-col my-4">
-                    <label className="font-bold text-xl">Password:</label>
+                    <label className="font-bold text-xl">Old Password: </label>
                     <input
                       className="w-full px-5 py-1 rounded-lg border-2"
-                      type="password"
-                      name="password"
+                      type="Password"
+                      name="oldPassword"
                       onChange={handleChange}
-                      value={password}
+                      value={oldPassword}
+                    />
+                  </div>
+                  <div className="flex flex-col my-4">
+                    <label className="font-bold text-xl">New Password: </label>
+                    <input
+                      className="w-full px-5 py-1 rounded-lg border-2"
+                      type="Password"
+                      name="newPassword"
+                      onChange={handleChange}
+                      value={newPassword}
                     />
                   </div>
                   <div className="flex flex-col my-4">
@@ -74,7 +88,7 @@ const ResetPassword = () => {
                     </label>
                     <input
                       className="w-full px-5 py-1 rounded-lg border-2"
-                      type="password"
+                      type="Password"
                       name="confirmPassword"
                       onChange={handleChange}
                       value={confirmPassword}
@@ -95,4 +109,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ChangePassword;

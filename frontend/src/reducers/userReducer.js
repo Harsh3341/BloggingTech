@@ -12,6 +12,14 @@ import {
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_RESET,
   UPDATE_PASSWORD_FAIL,
+  FORGOT_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD_RESET,
+  FORGOT_PASSWORD_FAIL,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_RESET,
+  RESET_PASSWORD_FAIL,
   // ALL_USER_REQUEST,
   ALL_USER_SUCCESS,
   ALL_USER_FAIL,
@@ -104,6 +112,20 @@ export const profileReducer = (state = {}, action) => {
         loading: true,
         isUpdated: false,
       };
+
+    case FORGOT_PASSWORD_REQUEST:
+      return {
+        loading: true,
+        status: false,
+      };
+
+    case RESET_PASSWORD_REQUEST:
+      return {
+        loading: true,
+        status: false,
+        user: [],
+      };
+
     case UPDATE_PASSWORD_SUCCESS:
       return {
         ...state,
@@ -111,16 +133,56 @@ export const profileReducer = (state = {}, action) => {
         isUpdated: true,
         message: action.payload.message,
       };
+
+    case FORGOT_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        status: true,
+        message: action.payload.message,
+      };
+
+    case RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        status: true,
+        user: action.payload.user,
+      };
+
     case UPDATE_PASSWORD_RESET:
       return {
         ...state,
         isUpdated: false,
       };
+
+    case FORGOT_PASSWORD_RESET:
+      return {
+        ...state,
+        status: false,
+      };
+
     case UPDATE_PASSWORD_FAIL:
       return {
         ...state,
         loading: false,
         isUpdated: false,
+        error: action.payload,
+      };
+
+    case FORGOT_PASSWORD_FAIL:
+      return {
+        ...state,
+        loading: false,
+        status: false,
+        error: action.payload,
+      };
+
+    case RESET_PASSWORD_FAIL:
+      return {
+        ...state,
+        loading: false,
+        status: false,
         error: action.payload,
       };
 

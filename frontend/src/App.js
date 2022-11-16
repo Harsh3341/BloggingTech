@@ -9,6 +9,8 @@ import { lodeUser } from "./actions/userAction";
 import UserBlogs from "./pages/UserBlogs";
 import Profile from "./pages/Profile";
 import { useSelector } from "react-redux";
+import ChangePassword from "./pages/ChangePassword";
+import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 
 function App() {
@@ -41,8 +43,10 @@ function App() {
         />
         <Route
           path="/profile/password/update"
-          element={isAuthenticated ? <ResetPassword /> : <SignIn />}
+          element={isAuthenticated ? <ChangePassword /> : <SignIn />}
         />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/password/reset/:token" element={<ResetPassword />} />
       </Routes>
     </>
   );

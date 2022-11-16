@@ -84,6 +84,13 @@ const SignIn = () => {
                       onChange={handleChange}
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
                     />
+                    <a
+                      className="w-fit hover:text-blue-500"
+                      href="/forgotpassword"
+                    >
+                      {" "}
+                      forgot password?
+                    </a>
                   </div>
 
                   <input
