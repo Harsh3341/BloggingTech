@@ -1,27 +1,24 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { resetpassword, clearErrors } from "../actions/userAction";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { forgotPassword, clearErrors } from "../actions/userAction";
 import Loading from "../components/Loading";
-import { RESET_PASSWORD_RESET } from "../constants/userConstants";
+import { useEffect } from "react";
+import { FORGOT_PASSWORD_RESET } from "../constants/userConstants";
+import { useNavigate } from "react-router-dom";
 
-const ResetPassword = () => {
+const ForgotPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { loading, error, status, user } = useSelector(
+  const { loading, error, message, status } = useSelector(
     (state) => state.profile
   );
 
-  const { token } = useParams();
-
   const [credentials, setCredentials] = useState({
-    password: "",
-    confirmPassword: "",
+    userEmail: "",
   });
 
-  const { password, confirmPassword } = credentials;
+  const { userEmail } = credentials;
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -29,8 +26,11 @@ const ResetPassword = () => {
 
   const resetPasswordSubmit = (e) => {
     e.preventDefault();
-    dispatch(resetpassword(token, password, confirmPassword));
+
+    dispatch(forgotPassword(userEmail));
   };
+
+  console.log(status);
 
   useEffect(() => {
     if (error) {
@@ -40,10 +40,10 @@ const ResetPassword = () => {
 
     if (status) {
       navigate("/login");
-      alert("Password reset successfully");
-      dispatch({ type: RESET_PASSWORD_RESET });
+      alert(message);
+      dispatch({ type: FORGOT_PASSWORD_RESET });
     }
-  }, [dispatch, error, status]);
+  }, [dispatch, error, status, message]);
 
   return (
     <>
@@ -59,25 +59,19 @@ const ResetPassword = () => {
                   onSubmit={resetPasswordSubmit}
                 >
                   <div className="flex flex-col my-4">
-                    <label className="font-bold text-xl">Password:</label>
-                    <input
-                      className="w-full px-5 py-1 rounded-lg border-2"
-                      type="password"
-                      name="password"
-                      onChange={handleChange}
-                      value={password}
-                    />
+                    <label className="font-bold text-xl">
+                      Enter your email address and we'll send you a link to
+                      reset your password.
+                    </label>
                   </div>
                   <div className="flex flex-col my-4">
-                    <label className="font-bold text-xl">
-                      Confirm Password:
-                    </label>
+                    <label className="font-bold text-xl">Email address:</label>
                     <input
                       className="w-full px-5 py-1 rounded-lg border-2"
-                      type="password"
-                      name="confirmPassword"
+                      type="email"
+                      name="userEmail"
                       onChange={handleChange}
-                      value={confirmPassword}
+                      value={userEmail}
                     />
                   </div>
                   <div className="flex flex-col my-4 font-bold text-lg w-full items-center">
@@ -95,4 +89,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ForgotPassword;

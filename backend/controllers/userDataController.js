@@ -71,14 +71,21 @@ const getUserBlog = asyncHandler(async (req, res) => {
   const temp = user.map(async (blog) => {
     const user = await User.findById(blog.user);
     {
-      try {
-        return {
-          ...blog._doc,
-          name: user.name,
-        };
-      } catch (error) {
-        console.log(error);
+      if (user !== null) {
+        try {
+          return {
+            ...blog._doc,
+            name: user.name,
+          };
+        } catch (error) {
+          console.log(error);
+        }
       }
+
+      return {
+        ...blog._doc,
+        name: "Unknown",
+      };
     }
   });
 
