@@ -7,6 +7,7 @@ const colors = require("colors");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/errorMiddleware");
+const path = require("path");
 
 // Connect to database
 connectDB();
@@ -23,6 +24,12 @@ app.use("/api/v1/password", require("./routes/resetPasswordRoute"));
 app.use("/api/v1/info", require("./routes/userDataRoute"));
 app.use("/api/v1/blog", require("./routes/createRoute"));
 app.use("/api/v1", require("./routes/homeRoute"));
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+});
 
 app.use(errorHandler);
 
