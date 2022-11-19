@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Profile = () => {
   const { user, loading } = useSelector((state) => state.user);
@@ -11,12 +12,11 @@ const Profile = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className=" w-full h-screen bg-gray-100">
+        <div className="flex flex-col w-full h-screen bg-gray-100">
           <Navbar />
           <div
-            className=" px-8 absolute w-full flex items-center justify-center
+            className=" px-8  w-full flex items-center justify-center h-full
          "
-            style={{ height: "-webkit-fill-available" }}
           >
             <div className="bg-white w-4/5 h-4/5 m-0 py-8 flex flex-col items-center rounded-2xl md:p-8 md:m-8">
               <h1 className="text-3xl mt-2 font-bold">My Profile</h1>

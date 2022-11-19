@@ -47,9 +47,16 @@ const changePassword = asyncHandler(async (req, res) => {
 
 // update user profile
 const updateProfile = asyncHandler(async (req, res) => {
+  const { name, email, username } = req.body;
+  if (!name || !email || !username) {
+    res.status(400);
+    throw new Error("Please provide all fields");
+  }
+
   const newUserData = {
-    username: req.body.username,
-    email: req.body.email,
+    name,
+    email,
+    username,
   };
 
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
