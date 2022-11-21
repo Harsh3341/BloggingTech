@@ -77,7 +77,15 @@ const BlogPosts = (post) => {
               >
                 {post.title}
               </a>
-              <p className="mt-2 text-gray-600">{post.content}</p>
+              <div>
+                {post.content.split("\n").map((item, i) => {
+                  return (
+                    <p key={i} className="mt-2 text-gray-600" key={i}>
+                      {item}
+                    </p>
+                  );
+                })}
+              </div>
             </div>
             <div className="flex justify-between items-center mt-4">
               <a className="text-blue-500 hover:underline" href="/">

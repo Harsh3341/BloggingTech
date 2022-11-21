@@ -33,9 +33,9 @@ const Dashboard = () => {
                   </h1>
                 </div>
                 {blogs &&
-                  blogs.map((post) => (
+                  blogs.map((post, i) => (
                     <BlogPosts
-                      key={post.user}
+                      key={i}
                       type="dashboard"
                       user={post.name}
                       title={post.title}
@@ -53,8 +53,8 @@ const Dashboard = () => {
                   <div className="flex flex-col bg-white max-w-sm px-6 py-4  rounded-lg shadow-md">
                     <ul className="-mx-4">
                       {users &&
-                        users.map((user) => (
-                          <UserComp key={user._id} username={user.username} />
+                        users.map((user, i) => (
+                          <UserComp key={i} username={user.username} />
                         ))}
                     </ul>
                   </div>

@@ -25,9 +25,9 @@ const UserBlogs = () => {
             <div className="flex justify-between container mx-auto">
               <div className="w-full lg:w-8/12">
                 {blogs &&
-                  blogs.map((post) => (
+                  blogs.map((post, i) => (
                     <BlogPosts
-                      key={post._id}
+                      key={i}
                       id={post._id}
                       type="UserBlogs"
                       user={post.name}
