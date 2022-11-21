@@ -80,7 +80,7 @@ const BlogPosts = (post) => {
               <div>
                 {post.content.split("\n").map((item, i) => {
                   return (
-                    <p key={i} className="mt-2 text-gray-600" key={i}>
+                    <p key={i} className="mt-2 text-gray-600">
                       {item}
                     </p>
                   );

@@ -18,7 +18,7 @@ const Profile = () => {
             className=" px-8  w-full flex items-center justify-center h-full
          "
           >
-            <div className="bg-white w-4/5 h-4/5 m-0 py-8 flex flex-col items-center rounded-2xl md:p-8 md:m-8">
+            <div className="bg-white w-4/5 h-4/5 m-0 py-8 flex flex-col items-center rounded-2xl md:p-8 md:m-8 shadow-md">
               <h1 className="text-3xl mt-2 font-bold">My Profile</h1>
               <div className=" w-full mt-4 h-full  p-10 flex justify-center items-center">
                 <div className="flex flex-col w-full ">
