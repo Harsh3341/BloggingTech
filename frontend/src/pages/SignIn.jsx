@@ -43,8 +43,13 @@ const SignIn = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="bg-white font-family-karla w-full h-screen">
-          <div className="w-full flex flex-wrap">
+        <div
+          className="bg-white font-family-karla w-full h-screen bg-cover bg-center"
+          style={{
+            backgroundImage: `url(/img/bg3.jpg)`,
+          }}
+        >
+          <div className="w-full flex flex-wrap backdrop-blur-lg h-full">
             <div className="w-full md:w-1/2 flex flex-col">
               <div className="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
                 <a href="/" className="font-bold text-xl p-4">

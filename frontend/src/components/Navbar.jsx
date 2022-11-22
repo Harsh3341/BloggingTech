@@ -1,5 +1,4 @@
 import { ImBlog } from "react-icons/im";
-import { BsFillBellFill } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import { IoIosCreate } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
@@ -20,7 +19,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-white px-6 py-4 shadow">
+      <nav className="bg-white px-6 py-4 shadow-md ">
         <div className="flex container mx-auto flex-row items-center justify-between">
           <div className="flex justify-between items-center">
             <div>
@@ -48,13 +47,13 @@ const Navbar = () => {
             </a>
           </div>
           <div
-            className={`group flex md:flex-row flex-col md:-mx-4 ${
+            className={`z-10 group flex md:flex-row flex-col md:-mx-4 ${
               toggle ? "block" : "hidden md:block"
             }`}
           >
             <a
               className="flex items-center my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
-              href="#"
+              href="/"
             >
               <FaUserAlt />
             </a>

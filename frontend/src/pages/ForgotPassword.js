@@ -50,10 +50,15 @@ const ForgotPassword = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="w-full h-full bg-gray-100 flex flex-col">
-          <div className="w-full h-full p-10 overflow-auto">
+        <div
+          className="w-full h-full bg-gray-100 flex flex-col bg-cover bg-center"
+          style={{
+            backgroundImage: `url(/img/bg3.jpg)`,
+          }}
+        >
+          <div className="w-full backdrop-blur-lg h-full p-10 overflow-auto">
             <div className="flex items-center justify-center h-full">
-              <div className="md:w-2/6 w-3/4 h-3/4 bg-white rounded-xl">
+              <div className="md:w-2/6 w-3/4 h-3/4 bg-white rounded-xl shadow-md">
                 <form
                   className="flex flex-col p-5 h-full justify-center"
                   onSubmit={resetPasswordSubmit}

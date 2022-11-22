@@ -19,9 +19,14 @@ const UserBlogs = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="h-screen w-full bg-gray-100 overflow-auto">
+        <div
+          className="flex flex-col h-screen w-full bg-gray-100 overflow-x-hidden overflow-y-auto bg-cover bg-center"
+          style={{
+            backgroundImage: `url(/img/bg3.jpg)`,
+          }}
+        >
           <Navbar />
-          <div className="px-6 py-8">
+          <div className="px-6 py-8 backdrop-blur-lg h-full">
             <div className="flex justify-between container mx-auto">
               <div className="w-full lg:w-8/12">
                 {blogs &&

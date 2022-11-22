@@ -12,10 +12,15 @@ const Profile = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="flex flex-col w-full h-screen bg-gray-100">
+        <div
+          className="flex flex-col h-screen w-full bg-gray-100 overflow-x-hidden overflow-y-auto bg-cover bg-center"
+          style={{
+            backgroundImage: `url(/img/bg3.jpg)`,
+          }}
+        >
           <Navbar />
           <div
-            className=" px-8  w-full flex items-center justify-center h-full
+            className=" px-8  w-full flex items-center justify-center backdrop-blur-lg h-full
          "
           >
             <div className="bg-white w-4/5 h-4/5 m-0 py-8 flex flex-col items-center rounded-2xl md:p-8 md:m-8 shadow-md">
