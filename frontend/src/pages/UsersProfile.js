@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-const UsersProfile = () => {
+const Profile = () => {
   const { user, loading } = useSelector((state) => state.user);
 
   return (
@@ -74,4 +74,4 @@ const UsersProfile = () => {
   );
 };
 
-export default UsersProfile;
+export default Profile;

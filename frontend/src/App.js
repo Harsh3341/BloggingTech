@@ -13,6 +13,7 @@ import ChangePassword from "./pages/ChangePassword";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import UpdateProfile from "./pages/UpdateProfile";
+import UsersProfile from "./pages/UsersProfile";
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.user);
@@ -41,6 +42,10 @@ function App() {
         <Route
           path="/profile"
           element={isAuthenticated ? <Profile /> : <SignIn />}
+        />
+        <Route
+          path="/:id"
+          element={isAuthenticated ? <UsersProfile /> : <SignIn />}
         />
         <Route
           path="/profile/password/update"
