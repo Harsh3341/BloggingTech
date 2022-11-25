@@ -8,6 +8,9 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  SEARCHED_USER_REQUEST,
+  SEARCHED_USER_SUCCESS,
+  SEARCHED_USER_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_RESET,
@@ -42,6 +45,12 @@ export const userReducer = (state = { user: {} }, action) => {
         isAuthenticated: false,
       };
 
+    case SEARCHED_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
     case LOGIN_SUCCESS:
     case REGISTER_USER_SUCCESS:
     case LOAD_USER_SUCCESS:
@@ -54,6 +63,7 @@ export const userReducer = (state = { user: {} }, action) => {
       };
 
     case ALL_USER_SUCCESS:
+    case SEARCHED_USER_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -86,10 +96,11 @@ export const userReducer = (state = { user: {} }, action) => {
       };
 
     case ALL_USER_FAIL:
+    case SEARCHED_USER_FAIL:
       return {
         ...state,
         loading: false,
-        user: null,
+        users: null,
         error: action.payload,
       };
 
