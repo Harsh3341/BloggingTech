@@ -6,12 +6,17 @@ import {
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { blogsReducer } from "./reducers/blogsReducer";
-import { userReducer, profileReducer } from "./reducers/userReducer";
+import {
+  userReducer,
+  profileReducer,
+  searchedUserReducer,
+} from "./reducers/userReducer";
 
 const reducer = combineReducers({
   blogs: blogsReducer,
   user: userReducer,
   profile: profileReducer,
+  searchedUser: searchedUserReducer,
 });
 
 let initialState = {};

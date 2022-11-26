@@ -8,6 +8,9 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  SEARCHED_USER_REQUEST,
+  SEARCHED_USER_SUCCESS,
+  SEARCHED_USER_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_RESET,
@@ -89,7 +92,7 @@ export const userReducer = (state = { user: {} }, action) => {
       return {
         ...state,
         loading: false,
-        user: null,
+        users: null,
         error: action.payload,
       };
 
@@ -191,6 +194,36 @@ export const profileReducer = (state = {}, action) => {
         ...state,
         loading: false,
         status: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const searchedUserReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SEARCHED_USER_REQUEST:
+      return {
+        loading: true,
+        data: {},
+      };
+
+    case SEARCHED_USER_SUCCESS:
+      return {
+        loading: false,
+        data: action.payload,
+      };
+
+    case SEARCHED_USER_FAIL:
+      return {
+        loading: false,
         error: action.payload,
       };
 

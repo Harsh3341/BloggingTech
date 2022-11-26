@@ -59,7 +59,11 @@ const Dashboard = () => {
                     <ul className="-mx-4">
                       {users &&
                         users.map((user, i) => (
-                          <UserComp key={i} username={user.username} />
+                          <UserComp
+                            key={i}
+                            name={user.name}
+                            username={user.username}
+                          />
                         ))}
                     </ul>
                   </div>

@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+import { searchedUser } from "../actions/userAction";
+import { useDispatch } from "react-redux";
+
 const UserComp = (post) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <li className="flex items-center mt-3 mb-3">
       <img
@@ -7,8 +14,11 @@ const UserComp = (post) => {
         alt="avatar"
       />
       <p>
-        <a className="text-gray-700 font-bold mx-1 hover:underline" href="/">
-          {post.username}
+        <a
+          className="text-gray-700 font-bold mx-1 hover:underline"
+          href={`/${post.username}`}
+        >
+          {post.name}
         </a>
         <span className="text-gray-700 text-sm font-light"></span>
       </p>
