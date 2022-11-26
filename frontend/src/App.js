@@ -43,10 +43,7 @@ function App() {
           path="/profile"
           element={isAuthenticated ? <Profile /> : <SignIn />}
         />
-        <Route
-          path="/:id"
-          element={isAuthenticated ? <UsersProfile /> : <SignIn />}
-        />
+        <Route path="/:id" element=<UsersProfile /> />
         <Route
           path="/profile/password/update"
           element={isAuthenticated ? <ChangePassword /> : <SignIn />}

@@ -1,15 +1,22 @@
 import Navbar from "../components/Navbar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Loading from "../components/Loading";
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { searchedUser } from "../actions/userAction";
+import { useParams } from "react-router-dom";
 
-const Profile = () => {
-  const { user, loading } = useSelector((state) => state.user);
+const UsersProfile = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { loading, data } = useSelector((state) => state.searchedUser);
+
+  useEffect(() => {
+    dispatch(searchedUser(id));
+  }, [dispatch, id]);
 
   return (
     <>
-      {loading ? (
+      {loading || !data ? (
         <Loading />
       ) : (
         <div
@@ -24,29 +31,21 @@ const Profile = () => {
          "
           >
             <div className="bg-white w-4/5 h-4/5 m-0 py-8 flex flex-col items-center rounded-2xl md:p-8 md:m-8 shadow-md">
-              <h1 className="text-3xl mt-2 font-bold">My Profile</h1>
+              <h1 className="text-3xl mt-2 font-bold">{data.name}'s Profile</h1>
               <div className=" w-full mt-4 h-full  p-10 flex justify-center items-center">
                 <div className="flex flex-col w-full ">
                   <div className=" flex flex-col w-full justify-center ">
                     <h1 className="font-bold text-xl">Name</h1>
-                    <p>{user.name}</p>
+                    <p>{data.name}</p>
                   </div>
                   <div className="mt-7 flex flex-col w-full justify-center ">
                     <h1 className="font-bold text-xl">Username</h1>
-                    <p>{user.username}</p>
+                    <p>{data.username}</p>
                   </div>
                   <div className="mt-7 flex flex-col w-full justify-center ">
                     <h1 className="font-bold text-xl">Email</h1>
-                    <p> {user.email}</p>
+                    <p> {data.email}</p>
                   </div>
-                  <Link
-                    className="w-2/5 p-1 flex justify-center text-white bg-black mt-7 rounded-md"
-                    to="/profile/password/update"
-                  >
-                    <button className="w-full hover:bg-gray-500">
-                      Change Password
-                    </button>
-                  </Link>
                 </div>
                 <div className="flex flex-col w-full  items-center h-full">
                   <div className="w-3/4 h-3/4 flex items-center justify-center">
@@ -56,14 +55,6 @@ const Profile = () => {
                       alt="#"
                     />
                   </div>
-                  <Link
-                    className="w-2/4 p-1 flex justify-center text-white bg-black rounded-md"
-                    to="/profile/update"
-                  >
-                    <button className="w-full hover:bg-gray-500">
-                      Edit Profile
-                    </button>
-                  </Link>
                 </div>
               </div>
             </div>
@@ -74,4 +65,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UsersProfile;

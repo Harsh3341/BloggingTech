@@ -54,7 +54,7 @@ const getSearchedUser = asyncHandler(async (req, res) => {
   if (user) {
     res.status(200).json({
       success: true,
-      user,
+      users: user[0],
     });
   } else {
     res.status(404);

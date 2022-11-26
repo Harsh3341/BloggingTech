@@ -137,7 +137,7 @@ export const searchedUser = (id) => async (dispatch) => {
 
     dispatch({
       type: SEARCHED_USER_SUCCESS,
-      payload: data,
+      payload: data.users,
     });
   } catch (error) {
     dispatch({

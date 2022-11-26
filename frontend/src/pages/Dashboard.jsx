@@ -17,8 +17,6 @@ const Dashboard = () => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  console.log(users);
-
   return (
     <>
       {loading ? (

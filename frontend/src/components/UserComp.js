@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+import { searchedUser } from "../actions/userAction";
+import { useDispatch } from "react-redux";
+
 const UserComp = (post) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <li className="flex items-center mt-3 mb-3">
       <img
