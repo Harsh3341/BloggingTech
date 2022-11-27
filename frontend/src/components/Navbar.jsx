@@ -51,12 +51,9 @@ const Navbar = () => {
               toggle ? "block" : "hidden md:block"
             }`}
           >
-            <a
-              className="flex items-center my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
-              href="/"
-            >
+            <button className="flex items-center my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">
               <FaUserAlt />
-            </a>
+            </button>
             <ul className="absolute right-2 top-10 hidden text-gray-700 pt-1 group-hover:block">
               <li>
                 <a
