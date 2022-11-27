@@ -46,4 +46,20 @@ const getAllUsers = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { getBlogs, getAllUsers };
+const getSearchedUser = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+
+  const user = await User.find({ username: id }).select("-_id");
+
+  if (user) {
+    res.status(200).json({
+      success: true,
+      users: user[0],
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+module.exports = { getBlogs, getAllUsers, getSearchedUser };

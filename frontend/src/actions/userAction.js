@@ -8,6 +8,9 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  SEARCHED_USER_REQUEST,
+  SEARCHED_USER_SUCCESS,
+  SEARCHED_USER_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_RESET,
@@ -119,6 +122,26 @@ export const lodeUser = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOAD_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// Searched User
+
+export const searchedUser = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: SEARCHED_USER_REQUEST });
+
+    const { data } = await axios.put(`/api/v1/${id}`);
+
+    dispatch({
+      type: SEARCHED_USER_SUCCESS,
+      payload: data.users,
+    });
+  } catch (error) {
+    dispatch({
+      type: SEARCHED_USER_FAIL,
       payload: error.response.data.message,
     });
   }
