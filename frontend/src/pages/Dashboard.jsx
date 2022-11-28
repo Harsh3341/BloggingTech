@@ -44,7 +44,7 @@ const Dashboard = () => {
                       type="dashboard"
                       user={post.name}
                       title={post.title}
-                      content={post.blog}
+                      content={`${post.blog.substring(0, 200)}...`}
                       Image={post.image[0].url}
                       date={post.updatedAt}
                     />

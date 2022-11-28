@@ -62,4 +62,26 @@ const getSearchedUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { getBlogs, getAllUsers, getSearchedUser };
+// Detailed Blog
+const detailedBlog = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+
+  const blog = await Blog.findById(id);
+
+  if (blog) {
+    const user = await User.findById(blog.user);
+
+    res.status(200).json({
+      success: true,
+      blog: {
+        ...blog._doc,
+        name: user.name,
+      },
+    });
+  } else {
+    res.status(404);
+    throw new Error("Blog not found");
+  }
+});
+
+module.exports = { getBlogs, getAllUsers, getSearchedUser, detailedBlog };
