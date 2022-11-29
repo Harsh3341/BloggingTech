@@ -12,6 +12,9 @@ import {
   USER_BLOGS_REQUEST,
   USER_BLOGS_SUCCESS,
   USER_BLOGS_FAIL,
+  DETAILED_BLOGS_REQUEST,
+  DETAILED_BLOGS_SUCCESS,
+  DETAILED_BLOGS_FAIL,
   CLEAR_ERRORS,
 } from "../constants/blogsConstants";
 
@@ -45,6 +48,24 @@ export const getUserBlogs = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_BLOGS_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// Detailed blog
+export const getDetailedBlog = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DETAILED_BLOGS_REQUEST });
+    const { data } = await axios.put(`/api/v1/blog/${id}`);
+
+    dispatch({
+      type: DETAILED_BLOGS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DETAILED_BLOGS_FAIL,
       payload: error.response.data.message,
     });
   }

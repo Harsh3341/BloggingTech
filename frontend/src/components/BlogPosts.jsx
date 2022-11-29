@@ -72,7 +72,7 @@ const BlogPosts = (post) => {
             </div>
             <div className="mt-2">
               <a
-                className="text-2xl text-gray-700 font-bold hover:underline"
+                className="text-2xl text-black font-bold hover:underline"
                 href="/"
               >
                 {post.title}
@@ -80,7 +80,7 @@ const BlogPosts = (post) => {
               <div>
                 {post.content.split("\n").map((item, i) => {
                   return (
-                    <p key={i} className="mt-2 text-gray-600">
+                    <p key={i} className="mt-2 text-gray-600 font-medium">
                       {item}
                     </p>
                   );
@@ -88,7 +88,10 @@ const BlogPosts = (post) => {
               </div>
             </div>
             <div className="flex justify-between items-center mt-4">
-              <a className="text-blue-500 hover:underline" href="/">
+              <a
+                className="text-blue-500 hover:underline"
+                href={`/blog/${post.id}`}
+              >
                 Read more
               </a>
               <div>
