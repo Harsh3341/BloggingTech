@@ -47,6 +47,7 @@ const Dashboard = () => {
                       content={`${post.blog.substring(0, 200)}...`}
                       Image={post.image[0].url}
                       date={post.updatedAt}
+                      id={post._id}
                     />
                   ))}
               </div>

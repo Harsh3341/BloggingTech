@@ -11,6 +11,9 @@ import {
   USER_BLOGS_REQUEST,
   USER_BLOGS_SUCCESS,
   USER_BLOGS_FAIL,
+  DETAILED_BLOGS_REQUEST,
+  DETAILED_BLOGS_SUCCESS,
+  DETAILED_BLOGS_FAIL,
   CLEAR_ERRORS,
 } from "../constants/blogsConstants";
 
@@ -24,6 +27,12 @@ export const blogsReducer = (state = { blogs: [] }, action) => {
         blogs: [],
       };
 
+    case DETAILED_BLOGS_REQUEST:
+      return {
+        loading: true,
+        blog: {},
+      };
+
     case DELETE_BLOGS_REQUEST:
       return {
         ...state,
@@ -35,6 +44,12 @@ export const blogsReducer = (state = { blogs: [] }, action) => {
       return {
         loading: false,
         blogs: action.payload.blogs,
+      };
+
+    case DETAILED_BLOGS_SUCCESS:
+      return {
+        loading: false,
+        blog: action.payload.blog,
       };
 
     case DELETE_BLOGS_SUCCESS:
@@ -55,6 +70,7 @@ export const blogsReducer = (state = { blogs: [] }, action) => {
 
     case ALL_BLOGS_FAIL:
     case USER_BLOGS_FAIL:
+    case DETAILED_BLOGS_FAIL:
       return {
         loading: false,
         error: action.payload,

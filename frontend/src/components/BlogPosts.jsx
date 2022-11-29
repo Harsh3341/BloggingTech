@@ -88,7 +88,10 @@ const BlogPosts = (post) => {
               </div>
             </div>
             <div className="flex justify-between items-center mt-4">
-              <a className="text-blue-500 hover:underline" href="/">
+              <a
+                className="text-blue-500 hover:underline"
+                href={`/blog/${post.id}`}
+              >
                 Read more
               </a>
               <div>
