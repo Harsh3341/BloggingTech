@@ -56,7 +56,7 @@ const ResetPassword = () => {
             backgroundImage: `url(/img/bg3.jpg)`,
           }}
         >
-          <div className="w-full h-full p-10 overflow-auto backdrop-blur-lg">
+          <div className="w-full h-full p-10 overflow-auto">
             <div className="flex items-center justify-center h-full">
               <div className="shadow-md md:w-2/6 w-3/4 h-3/4 bg-white rounded-xl ">
                 <form
