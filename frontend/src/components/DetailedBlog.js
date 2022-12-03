@@ -1,4 +1,3 @@
-import BlogPosts from "../components/BlogPosts";
 import Navbar from "../components/Navbar";
 import { getDetailedBlog } from "../actions/blogsAction";
 import { useSelector, useDispatch } from "react-redux";
@@ -57,15 +56,15 @@ const DetailedBlog = () => {
         <Loading />
       ) : (
         <div
-          className="flex flex-col h-full w-full bg-gray-100 overflow-x-hidden overflow-y-auto bg-cover bg-center"
+          className="flex flex-col h-screen w-full bg-gray-100 overflow-x-hidden overflow-y-auto bg-cover bg-center"
           style={{
             backgroundImage: `url(/img/bg3.jpg)`,
           }}
         >
           <Navbar />
-          <div className="md:px-6 py-8 h-auto backdrop-blur-lg">
-            <div className="flex justify-center container mx-auto h-fit">
-              <div className="md:w-2/3 bg-white rounded-2xl shadow-md flex items-center p-8 flex-col h-fit">
+          <div className="md:px-6 py-8 ">
+            <div className="flex justify-center container mx-auto ">
+              <div className="md:w-2/3 bg-white rounded-2xl shadow-md flex items-center p-8 flex-col">
                 <div className="w-full flex items-center flex-col">
                   <h1 className="md:text-4xl text-2xl font-bold text-center mb-4">
                     {blog.title}

@@ -26,7 +26,7 @@ const UserBlogs = () => {
           }}
         >
           <Navbar />
-          <div className="px-6 py-8 backdrop-blur-lg h-full">
+          <div className="px-6 py-8">
             <div className="flex justify-between container mx-auto">
               <div className="w-full lg:w-8/12">
                 {blogs &&

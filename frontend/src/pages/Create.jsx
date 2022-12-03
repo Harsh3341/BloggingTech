@@ -50,8 +50,8 @@ const Create = () => {
           }}
         >
           <Navbar />
-          <div className="h-full p-8 w-full flex justify-center backdrop-blur-lg">
-            <div className="md:w-3/4 w-4/4 h-2/3 flex items-center flex-col p-8 relative bg-white rounded-2xl shadow-md">
+          <div className="h-2/3 p-8 w-full flex justify-center">
+            <div className="md:w-3/4 w-4/4  flex items-center flex-col p-8 relative bg-white rounded-2xl shadow-md">
               <h1 className="text-4xl text-left w-full m-5">
                 <input
                   onChange={handleChange}

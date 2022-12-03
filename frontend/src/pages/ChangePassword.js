@@ -60,9 +60,9 @@ const ChangePassword = () => {
           }}
         >
           <Navbar />
-          <div className="w-full backdrop-blur-lg h-full p-10 overflow-auto">
+          <div className="w-full h-3/4 p-10 overflow-auto">
             <div className="flex items-center justify-center h-full">
-              <div className="md:w-2/6 w-3/4 h-3/4 bg-white rounded-xl shadow-md">
+              <div className="md:w-2/6 w-3/4 bg-white rounded-xl shadow-md">
                 <form
                   className="flex flex-col p-5 h-full justify-center"
                   onSubmit={resetPasswordSubmit}
