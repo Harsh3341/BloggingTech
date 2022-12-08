@@ -5,7 +5,7 @@ const userBlogSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "userData",
+      ref: "userData", // reference to user model
     },
     title: {
       type: String,
@@ -29,7 +29,7 @@ const userBlogSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true } // add createdAt and updatedAt fields
 );
 
 module.exports = mongoose.model("Blog", userBlogSchema);

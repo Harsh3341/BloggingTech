@@ -1,14 +1,23 @@
 const express = require("express");
 const router = express.Router();
+
+// import controllers
 const {
   getUser,
   changePassword,
   updateProfile,
 } = require("../controllers/userDataController");
+
+// import middleware
 const protect = require("../middleware/authMiddleware");
 
-router.get("/", protect, getUser);
-router.put("/changePassword", protect, changePassword);
-router.put("/updateProfile", protect, updateProfile);
+// get user data
+router.get("/user", protect, getUser);
+
+// change password
+router.put("/password/update", protect, changePassword);
+
+// update profile
+router.put("/profile/update", protect, updateProfile);
 
 module.exports = router;
