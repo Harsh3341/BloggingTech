@@ -45,6 +45,7 @@ const DetailedBlog = () => {
   }
 
   const { id } = useParams();
+  console.log(id);
 
   useEffect(() => {
     dispatch(getDetailedBlog(id));

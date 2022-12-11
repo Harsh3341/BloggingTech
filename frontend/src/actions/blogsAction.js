@@ -18,10 +18,11 @@ import {
   CLEAR_ERRORS,
 } from "../constants/blogsConstants";
 
+// Get all blogs
 export const getBlogs = () => async (dispatch) => {
   try {
-    dispatch({ type: ALL_BLOGS_REQUEST });
-    const { data } = await axios.get("/api/v1/");
+    dispatch({ type: ALL_BLOGS_REQUEST }); // this is the action type
+    const { data } = await axios.get("/api/v1/"); // this is the route to get all blogs
 
     dispatch({
       type: ALL_BLOGS_SUCCESS,
@@ -57,7 +58,7 @@ export const getUserBlogs = () => async (dispatch) => {
 export const getDetailedBlog = (id) => async (dispatch) => {
   try {
     dispatch({ type: DETAILED_BLOGS_REQUEST });
-    const { data } = await axios.put(`/api/v1/blog/${id}`);
+    const { data } = await axios.get(`/api/v1/blog/${id}`);
 
     dispatch({
       type: DETAILED_BLOGS_SUCCESS,
@@ -75,13 +76,15 @@ export const getDetailedBlog = (id) => async (dispatch) => {
 export const createBlog = (blogData) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_BLOGS_REQUEST });
+
+    // this is the config object
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
 
-    const { data } = await axios.post("/api/v1/blog/create", blogData, config);
+    const { data } = await axios.post("/api/v1/blog/create", blogData, config); // this is the route to create a new blog
 
     dispatch({
       type: CREATE_BLOGS_SUCCESS,

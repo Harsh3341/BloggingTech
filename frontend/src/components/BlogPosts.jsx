@@ -4,7 +4,8 @@ import Loading from "./Loading";
 
 const BlogPosts = (post) => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.blogs);
+
+  const { loading } = useSelector((state) => state.blogs); // get loading state from blogs reducer
   const date = post.date.substring(0, 10).split("-");
 
   let MONTHS = [
@@ -23,6 +24,7 @@ const BlogPosts = (post) => {
   ];
   let myDate, myFormatDate;
 
+  // converting date to format: Jan 1, 2021
   if (date[0]) {
     myDate = new Date(date[0], date[1] - 1, date[2]);
     myFormatDate =
@@ -36,6 +38,7 @@ const BlogPosts = (post) => {
     myFormatDate = MONTHS[myDate.getMonth()] + "," + myDate.getDate();
   }
 
+  // delete blog
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteBlog(id));

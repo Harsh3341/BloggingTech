@@ -10,15 +10,15 @@ const { detailedBlog } = require("../controllers/homeController");
 const protect = require("../middleware/authMiddleware");
 
 // create a new post
-router.post("/create", protect, createPost);
+router.post("/blog/create", protect, createPost);
 
 // delete a post
-router.delete("/delete/:id", protect, deletePost);
+router.delete("/blog/delete/:id", protect, deletePost);
 
 // get user blog
-router.get("/user", protect, getUserBlog);
+router.get("/blog", protect, getUserBlog);
 
 // get detailed blog
-router.get("/detailed/:id", protect, detailedBlog);
+router.get("/blog/:id", protect, detailedBlog);
 
 module.exports = router;
