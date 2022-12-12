@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createBlog } from "../actions/blogsAction";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 
 const Create = () => {
   const navigate = useNavigate();

@@ -1,12 +1,14 @@
-const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
-const bcrypt = require("bcryptjs");
 const Blog = require("../models/userBlogs");
 const User = require("../models/userModel");
 
+// Get All Blogs
+
 const getBlogs = asyncHandler(async (req, res) => {
+  // get all blogs from database
   const blogs = await Blog.find();
 
+  // get user name from user model
   const temp = blogs.map(async (blog) => {
     const user = await User.findById(blog.user);
 
@@ -29,8 +31,10 @@ const getBlogs = asyncHandler(async (req, res) => {
     }
   });
 
+  // wait for all promises to resolve
   const blogs2 = await Promise.all(temp);
 
+  // send user data to frontend
   res.status(200).json({
     success: true,
     blogs: blogs2,
@@ -38,7 +42,9 @@ const getBlogs = asyncHandler(async (req, res) => {
 });
 
 // Get All Users
+
 const getAllUsers = asyncHandler(async (req, res) => {
+  // get all users from database
   const users = await User.find();
   res.status(200).json({
     success: true,
@@ -46,11 +52,14 @@ const getAllUsers = asyncHandler(async (req, res) => {
   });
 });
 
+// Get Searched User
+
 const getSearchedUser = asyncHandler(async (req, res) => {
-  const id = req.params.id;
+  const id = req.params.id; // get username from url params (frontend)
 
-  const user = await User.find({ username: id }).select("-_id");
+  const user = await User.find({ username: id }).select("-_id"); // get user data from database and remove _id from response data (security)
 
+  // send user data to frontend
   if (user) {
     res.status(200).json({
       success: true,
@@ -63,11 +72,13 @@ const getSearchedUser = asyncHandler(async (req, res) => {
 });
 
 // Detailed Blog
+
 const detailedBlog = asyncHandler(async (req, res) => {
-  const id = req.params.id;
+  const id = req.params.id; // get blog id from url params (frontend)
 
-  const blog = await Blog.findById(id);
+  const blog = await Blog.findById(id); // get blog data from database
 
+  // send blog data to frontend
   if (blog) {
     const user = await User.findById(blog.user);
 

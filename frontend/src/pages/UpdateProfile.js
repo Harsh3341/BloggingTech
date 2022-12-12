@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile, clearErrors, lodeUser } from "../actions/userAction";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";

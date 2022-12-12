@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { updatePassword, clearErrors } from "../actions/userAction";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import { useNavigate } from "react-router-dom";
 import { UPDATE_PASSWORD_RESET } from "../constants/userConstants";
 

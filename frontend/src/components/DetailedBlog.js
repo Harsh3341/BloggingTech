@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import { getDetailedBlog } from "../actions/blogsAction";
 import { useSelector, useDispatch } from "react-redux";
-import Loading from "../components/Loading";
+import Loading from "./loading/Loading";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -45,6 +45,7 @@ const DetailedBlog = () => {
   }
 
   const { id } = useParams();
+  console.log(id);
 
   useEffect(() => {
     dispatch(getDetailedBlog(id));

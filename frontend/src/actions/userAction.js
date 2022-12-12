@@ -13,7 +13,6 @@ import {
   SEARCHED_USER_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
-  UPDATE_PROFILE_RESET,
   UPDATE_PROFILE_FAIL,
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
@@ -31,7 +30,7 @@ import {
   LOGOUT_FAIL,
   CLEAR_ERRORS,
 } from "../constants/userConstants";
-import axios from "axios";
+import axios from "axios"; // axios is a promise based HTTP client for the browser and node.js
 
 // Login User
 export const login = (email, password) => async (dispatch) => {
@@ -113,7 +112,7 @@ export const lodeUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get("/api/v1/info");
+    const { data } = await axios.get("/api/v1/user");
 
     dispatch({
       type: LOAD_USER_SUCCESS,
@@ -174,7 +173,7 @@ export const updatePassword =
       };
 
       const { data } = await axios.put(
-        "/api/v1/info/changePassword",
+        "/api/v1/password/update",
         { oldPassword, newPassword, confirmPassword },
         config
       );
@@ -256,7 +255,7 @@ export const updateProfile = (name, username, email) => async (dispatch) => {
       },
     };
     const { data } = await axios.put(
-      "/api/v1/info/updateProfile",
+      "/api/v1/profile/update",
       { name, username, email },
       config
     );

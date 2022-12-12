@@ -6,29 +6,31 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "Please tell us your name!"],
+      required: [true, "Please tell us your name!"], // custom error message
     },
     username: {
       type: String,
       required: [true, "Please enter a username"],
-      unique: true,
+      unique: true, // unique username
     },
     email: {
       type: String,
       required: [true, "Please enter an email"],
       unique: true,
-      validate: [validator.isEmail, "Please enter a valid email"],
+      validate: [validator.isEmail, "Please enter a valid email"], // custom error message for invalid email format using validator package from npm (https://www.npmjs.com/package/validator)
     },
     password: {
       type: String,
       required: [true, "Please enter a password"],
-      select: false,
+      select: false, // don't show password when getting user data from database
     },
-    resetPasswordToken: String,
-    resetPasswordExpire: Date,
+    resetPasswordToken: String, // reset password token
+    resetPasswordExpire: Date, // reset password expire
   },
-  { timestamps: true }
+  { timestamps: true } // add createdAt and updatedAt fields
 );
+
+// Encrypt password using bcrypt
 
 userSchema.methods.getresetPasswordToken = function () {
   // Generate token

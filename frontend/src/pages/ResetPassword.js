@@ -3,16 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetpassword, clearErrors } from "../actions/userAction";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import { RESET_PASSWORD_RESET } from "../constants/userConstants";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { loading, error, status, user } = useSelector(
-    (state) => state.profile
-  );
+  const { loading, error, status } = useSelector((state) => state.profile);
 
   const { token } = useParams();
 
@@ -43,7 +41,7 @@ const ResetPassword = () => {
       alert("Password reset successfully");
       dispatch({ type: RESET_PASSWORD_RESET });
     }
-  }, [dispatch, error, status]);
+  }, [dispatch, error, status, navigate]);
 
   return (
     <>

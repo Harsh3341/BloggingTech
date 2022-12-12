@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { register } from "../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import { ImBlog } from "react-icons/im";
 
 const SignUp = () => {
