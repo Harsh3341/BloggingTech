@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { forgotPassword, clearErrors } from "../actions/userAction";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import { useEffect } from "react";
 import { FORGOT_PASSWORD_RESET } from "../constants/userConstants";
 import { useNavigate } from "react-router-dom";

@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import { Link } from "react-router-dom";
 
 const UsersProfile = () => {

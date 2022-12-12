@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { getBlogs } from "../actions/blogsAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import UserComp from "../components/UserComp";
 import { getAllUsers } from "../actions/userAction";
 

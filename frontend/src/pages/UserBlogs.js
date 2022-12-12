@@ -1,6 +1,6 @@
 import BlogPosts from "../components/BlogPosts";
 import Navbar from "../components/Navbar";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserBlogs } from "../actions/blogsAction";

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteBlog } from "../actions/blogsAction";
-import Loading from "./Loading";
+import Loading from "./loading/Loading";
 
 const BlogPosts = (post) => {
   const dispatch = useDispatch();
