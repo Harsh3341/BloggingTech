@@ -1,2 +1,3 @@
 # BloggingTech
-A Blog publishing website made using MERN stack.  (Under Development)
+
+A Blog publishing website built using MERN stack. (Under Development)
