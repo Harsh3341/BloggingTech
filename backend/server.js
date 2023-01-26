@@ -1,4 +1,5 @@
 const express = require("express");
+const cloudinary = require("cloudinary");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const cors = require("cors");
@@ -7,12 +8,24 @@ const connectDB = require("./config/db"); // import database connection
 const cookieParser = require("cookie-parser"); // import cookie parser
 const errorHandler = require("./middleware/errorMiddleware"); // import error handler
 const path = require("path"); // import path module for serving static assets
+const bodyParser = require("body-parser"); // import body parser
+const fileupload = require("express-fileupload"); // import file upload
 
 // Connect to database
 connectDB();
 
+// configure cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 // allow cross-origin requests
 app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileupload());
 
 // parse json data
 app.use(express.json());

@@ -24,6 +24,17 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please enter a password"],
       select: false, // don't show password when getting user data from database
     },
+    avatar: {
+      public_id: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
+    },
+
     resetPasswordToken: String, // reset password token
     resetPasswordExpire: Date, // reset password expire
   },

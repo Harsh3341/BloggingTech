@@ -10,6 +10,7 @@ import {
   userReducer,
   profileReducer,
   searchedUserReducer,
+  uploadImageReducer,
 } from "./reducers/userReducer";
 
 // combine all reducers into one reducer and export it to store it in redux store and pass it to provider in index.js file to make it available to all components in the app using useSelector hook
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   user: userReducer,
   profile: profileReducer,
   searchedUser: searchedUserReducer,
+  image: uploadImageReducer,
 });
 
 let initialState = {}; // initial state of the app is empty object because we don't have any data in the app

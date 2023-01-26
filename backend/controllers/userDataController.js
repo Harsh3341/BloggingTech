@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const Blogs = require("../models/userBlogs");
 const bcrypt = require("bcryptjs");
+const cloudinary = require("cloudinary");
 
 // Get User Data
 
@@ -130,4 +131,53 @@ const getUserBlog = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { getUser, changePassword, updateProfile, getUserBlog };
+// upload image to cloudinary
+const uploadImage = asyncHandler(async (req, res) => {
+  const { image } = req.body;
+
+  // check if image is provided
+  if (!image) {
+    res.status(400);
+    throw new Error("Please provide an image");
+  }
+
+  const myCloud = await cloudinary.v2.uploader.upload(image, {
+    folder: "blog",
+    width: 150,
+    crop: "scale",
+  });
+
+  // delete old image from cloudinary
+  if (req.user.avatar.public_id !== "blog/default") {
+    await cloudinary.v2.uploader.destroy(req.user.avatar.public_id);
+  }
+
+  // upload image url to database
+  const user = await User.findByIdAndUpdate(
+    req.user.id,
+    {
+      avatar: {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      },
+    },
+    {
+      new: true,
+      runValidators: true,
+      userFindAndModify: false,
+    }
+  );
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+module.exports = {
+  getUser,
+  changePassword,
+  updateProfile,
+  getUserBlog,
+  uploadImage,
+};

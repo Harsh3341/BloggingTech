@@ -1,14 +1,47 @@
 import Navbar from "../components/Navbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../components/loading/Loading";
 import { Link } from "react-router-dom";
+import { RiImageAddLine } from "react-icons/ri";
+import { useState } from "react";
+import { lodeUser, uploadAvatar } from "../actions/userAction";
+import { useEffect } from "react";
 
 const UsersProfile = () => {
+  const dispatch = useDispatch();
+
   const { user, loading } = useSelector((state) => state.user);
+  const { loader, error, isUploaded } = useSelector((state) => state.image);
+
+  const [avatar, setAvatar] = useState("");
+
+  const handleImageChange = (e) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatar(reader.result);
+      }
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const handleImageUpload = () => {
+    dispatch(uploadAvatar(avatar));
+    setAvatar("");
+  };
+
+  useEffect(() => {
+    if (isUploaded) {
+      dispatch(lodeUser());
+      dispatch({ type: "UPDATE_PROFILE_IMAGE_RESET" });
+    }
+  }, [dispatch, isUploaded]);
 
   return (
     <>
-      {loading ? (
+      {loading || loader ? (
         <Loading />
       ) : (
         <div
@@ -48,12 +81,32 @@ const UsersProfile = () => {
                   </Link>
                 </div>
                 <div className="flex flex-col w-full  items-center h-full">
-                  <div className="w-3/4 h-3/4 flex items-center justify-center">
+                  <div className="w-3/4 h-3/4 flex items-center justify-center relative">
                     <img
-                      className="w-3/4 h-52 rounded-full border-4 border-black"
-                      src="https://images3.alphacoders.com/823/thumb-1920-82317.jpg"
+                      className="w-2/4 h-52 rounded-full object-cover shadow-gray-500 shadow-2xl"
+                      src={user.avatar.url}
                       alt="#"
                     />
+                    <label
+                      className="absolute bottom-6 bg-zinc-400 border-none rounded-full p-2 flex items-center justify-center"
+                      for="file-input"
+                    >
+                      <RiImageAddLine className="text-white cursor-pointer" />
+                      <input
+                        className="hidden"
+                        id="file-input"
+                        type="file"
+                        name="avatar"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                      />
+                      <button
+                        className={`text-white ${avatar ? "block" : "hidden"}`}
+                        onClick={handleImageUpload}
+                      >
+                        Upload
+                      </button>
+                    </label>
                   </div>
                   <Link
                     className="w-2/4 p-1 flex justify-center text-white bg-black rounded-md"
