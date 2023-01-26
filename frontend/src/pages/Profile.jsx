@@ -84,7 +84,7 @@ const UsersProfile = () => {
                   <div className="w-3/4 h-3/4 flex items-center justify-center relative">
                     <img
                       className="w-2/4 h-52 rounded-full object-cover shadow-gray-500 shadow-2xl"
-                      src={user.avatar.url}
+                      src={user.avatar ? user.avatar.url : "/img/avatar.png"}
                       alt="#"
                     />
                     <label

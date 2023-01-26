@@ -43,6 +43,10 @@ const registerUser = asyncHandler(async (req, res) => {
     username,
     email: email.toLowerCase(),
     password: hashedPassword,
+    avatar: {
+      public_id: "avatar.png",
+      url: "/img/avatar.png",
+    },
   });
 
   // if user is created, send the token to the client
