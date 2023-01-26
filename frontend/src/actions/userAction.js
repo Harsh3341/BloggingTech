@@ -17,6 +17,9 @@ import {
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_FAIL,
+  UPDATE_PROFILE_IMAGE_REQUEST,
+  UPDATE_PROFILE_IMAGE_SUCCESS,
+  UPDATE_PROFILE_IMAGE_FAIL,
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAIL,
@@ -266,6 +269,32 @@ export const updateProfile = (name, username, email) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_PROFILE_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// Upload Avatar
+export const uploadAvatar = (image) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PROFILE_IMAGE_REQUEST });
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.post(
+      "/api/v1/image/upload",
+      { image },
+      config
+    );
+    dispatch({
+      type: UPDATE_PROFILE_IMAGE_SUCCESS,
+      payload: data.user.avatar.url,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PROFILE_IMAGE_FAIL,
       payload: error.response.data.message,
     });
   }

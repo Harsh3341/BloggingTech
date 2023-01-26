@@ -19,6 +19,10 @@ import {
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_RESET,
   UPDATE_PASSWORD_FAIL,
+  UPDATE_PROFILE_IMAGE_REQUEST,
+  UPDATE_PROFILE_IMAGE_SUCCESS,
+  UPDATE_PROFILE_IMAGE_RESET,
+  UPDATE_PROFILE_IMAGE_FAIL,
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_RESET,
@@ -232,6 +236,44 @@ export const searchedUserReducer = (state = {}, action) => {
         ...state,
         error: null,
       };
+    default:
+      return state;
+  }
+};
+
+export const uploadImageReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PROFILE_IMAGE_REQUEST:
+      return {
+        loader: true,
+      };
+
+    case UPDATE_PROFILE_IMAGE_SUCCESS:
+      return {
+        loader: false,
+        message: action.payload.message,
+        image: action.payload,
+        isUploaded: true,
+      };
+
+    case UPDATE_PROFILE_IMAGE_FAIL:
+      return {
+        loader: false,
+        error: action.payload,
+      };
+
+    case UPDATE_PROFILE_IMAGE_RESET:
+      return {
+        ...state,
+        isUploaded: false,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
     default:
       return state;
   }

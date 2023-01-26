@@ -6,6 +6,7 @@ const {
   getUser,
   changePassword,
   updateProfile,
+  uploadImage,
 } = require("../controllers/userDataController");
 
 // import middleware
@@ -19,5 +20,8 @@ router.put("/password/update", protect, changePassword);
 
 // update profile
 router.put("/profile/update", protect, updateProfile);
+
+// upload image to cloudinary
+router.post("/image/upload", protect, uploadImage);
 
 module.exports = router;
