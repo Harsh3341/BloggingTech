@@ -280,7 +280,7 @@ export const uploadAvatar = (image) => async (dispatch) => {
     dispatch({ type: UPDATE_PROFILE_IMAGE_REQUEST });
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
     };
     const { data } = await axios.post(
@@ -295,7 +295,7 @@ export const uploadAvatar = (image) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_PROFILE_IMAGE_FAIL,
-      payload: error.response.data.message,
+      payload: error,
     });
   }
 };
