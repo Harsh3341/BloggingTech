@@ -13,23 +13,20 @@ const UsersProfile = () => {
   const { user, loading } = useSelector((state) => state.user);
   const { loader, error, isUploaded } = useSelector((state) => state.image);
 
-  const [avatar, setAvatar] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
 
   const handleImageChange = (e) => {
     const reader = new FileReader();
 
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setAvatar(reader.result);
+        setSelectedImage(reader.result);
+        setPreviewImage(reader.result);
       }
     };
 
     reader.readAsDataURL(e.target.files[0]);
-  };
-
-  const handleImageUpload = () => {
-    dispatch(uploadAvatar(avatar));
-    setAvatar("");
   };
 
   useEffect(() => {
@@ -84,12 +81,15 @@ const UsersProfile = () => {
                   <div className="w-3/4 h-3/4 flex items-center justify-center relative">
                     <img
                       className="w-2/4 h-52 rounded-full object-cover shadow-gray-500 shadow-2xl"
-                      src={user.avatar ? user.avatar.url : "/img/avatar.png"}
+                      src={
+                        previewImage ||
+                        (user.avatar ? user.avatar.url : "/img/avatar.png")
+                      }
                       alt="#"
                     />
                     <label
                       className="absolute bottom-6 bg-zinc-400 border-none rounded-full p-2 flex items-center justify-center"
-                      for="file-input"
+                      htmlFor="file-input"
                     >
                       <RiImageAddLine className="text-white cursor-pointer" />
                       <input
@@ -101,13 +101,16 @@ const UsersProfile = () => {
                         onChange={handleImageChange}
                       />
                       <button
-                        className={`text-white ${avatar ? "block" : "hidden"}`}
-                        onClick={handleImageUpload}
+                        className={`text-white ${
+                          previewImage ? "block" : "hidden"
+                        }`}
+                        onClick={() => dispatch(uploadAvatar(selectedImage))}
                       >
                         Upload
                       </button>
                     </label>
                   </div>
+
                   <Link
                     className="w-2/4 p-1 flex justify-center text-white bg-black rounded-md"
                     to="/profile/update"
